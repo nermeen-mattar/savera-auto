@@ -4,5 +4,12 @@
     "actions": {
         "see-all": "See all",
         "view": "View"
+    },
+    "categories": {
+        "all-pets": "All pets",
+        "location-specific": "Location specific",
+        "age-specific": "Age specific",
+        "available-now": "Available now",
+        "small-or-big-home": "For small or big homes"
     }
 }

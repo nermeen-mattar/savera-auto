@@ -10,7 +10,6 @@ interface Props {
 }
 
 function Card({ name, photoUrl, photoPlaceholder, actionLabel }: Props) {
-
     const handleImageError = (
         event: React.SyntheticEvent<HTMLImageElement, Event>,
     ) => {
