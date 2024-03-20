@@ -16,7 +16,12 @@ const MainContainer = styled.main`
     margin: 0 auto;
     max-width: 1200px;
     padding: 20px;
-    text-align: center;
+`;
+
+const ContentSecion = styled.section`
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
 `;
 
 function PetsPage() {
@@ -46,29 +51,31 @@ function PetsPage() {
     return (
         <MainContainer>
             <h2>{t('pets')}</h2>
-            {loading ? (
-                <p>Loading...</p>
-            ) : error ? (
-                <p>Error: {error}</p>
-            ) : (
-                <>
-                    <Filter
-                        items={allPets}
-                        onFilterChange={handleFilterChange}
-                    />
-                    <PetList pets={filteredPets} />
-                </>
-            )}
-            <DirectorySection
-                title={t('pets-directory')}
-                description={t('see-pets-for-adoption')}
-                actionLabel={t('actions.see-all')}
-                photo={treats}
-                onClick={() => {
-                    alert('hi');
-                }}
-            />
-            <CategoriesList />
+            <ContentSecion>
+                {loading ? (
+                    <p>Loading...</p>
+                ) : error ? (
+                    <p>Error: {error}</p>
+                ) : (
+                    <>
+                        <Filter
+                            items={allPets}
+                            onFilterChange={handleFilterChange}
+                        />
+                        <PetList pets={filteredPets} />
+                    </>
+                )}
+                <DirectorySection
+                    title={t('pets-directory')}
+                    description={t('see-pets-for-adoption')}
+                    actionLabel={t('actions.see-all')}
+                    photo={treats}
+                    onClick={() => {
+                        alert('hi');
+                    }}
+                />
+                <CategoriesList />
+            </ContentSecion>
         </MainContainer>
     );
 }
