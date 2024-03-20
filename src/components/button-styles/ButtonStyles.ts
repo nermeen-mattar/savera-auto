@@ -7,6 +7,11 @@ const buttonStyles = css`
     border: none;
     cursor: pointer;
     font-weight: bold;
+    transition: background-color 0.3s ease;
+    &:hover {
+        background-color: #f8cf47;
+        color: ${theme.colors.darkGrey};
+    }
 `;
 
 export const LightButton = styled.button`

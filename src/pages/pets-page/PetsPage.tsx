@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+import DirectorySection from '../../components/directory-section/DirectorySection';
 import Filter from '../../components/filter/Filter';
 import PetList from '../../components/pets-list/PetsList';
+import treats from '../../images/treats.jpeg';
 import { fetchPets } from '../../state/actions/petActions';
 import { useAppDispatch } from '../../state/hooks';
 import { RootState } from '../../state/store';
@@ -17,19 +20,21 @@ const MainContainer = styled.main`
 
 function PetsPage() {
     const dispatch = useAppDispatch();
+    const { t } = useTranslation();
 
     useEffect(() => {
         dispatch(fetchPets());
     }, [dispatch]);
 
     const allPets: Pet[] = useSelector((state: RootState) => state.pet.pets);
-    const [loading, setLoading] = useState(true);
-    const [filteredPets, setFilteredPets] = useState<Pet[]>(allPets);
+    const loading = useSelector((state: RootState) => state.pet.loading);
+    const error = useSelector((state: RootState) => state.pet.error);
+
+    const [filteredPets, setFilteredPets] = useState<Pet[]>([]);
 
     useEffect(() => {
         if (allPets.length > 0) {
             setFilteredPets(allPets);
-            setLoading(false);
         }
     }, [allPets]);
 
@@ -39,9 +44,11 @@ function PetsPage() {
 
     return (
         <MainContainer>
-            <h2>Pets</h2>
+            <h2>{t('pets')}</h2>
             {loading ? (
                 <p>Loading...</p>
+            ) : error ? (
+                <p>Error: {error}</p>
             ) : (
                 <>
                     <Filter
@@ -51,6 +58,15 @@ function PetsPage() {
                     <PetList pets={filteredPets} />
                 </>
             )}
+            <DirectorySection
+                title={t('pets-directory')}
+                description={t('see-pets-for-adoption')}
+                actionLabel={t('actions.see-all')}
+                photo={treats}
+                onClick={() => {
+                    alert('hi');
+                }}
+            />
         </MainContainer>
     );
 }

@@ -1,3 +1,8 @@
 {
-    "view": "bekijken"
+    "pets-directory": "Dierenoverzicht",
+    "see-pets-for-adoption": "Bekijk alle huisdieren die beschikbaar zijn voor adoptie, promoot ze en geef ze een thuis",
+    "actions": {
+        "see-all": "Bekijk alles",
+        "view": "Bekijk"
+    }
 }

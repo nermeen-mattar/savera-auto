@@ -6,6 +6,7 @@
 
 .card__image {
     border-radius: 10px;
+    width: 250px;
 }
 
 .card__content {
