@@ -1,4 +1,4 @@
-import React from 'react';
+import { useCallback, useState } from 'react';
 import { DarkButton } from '../button-styles/ButtonStyles';
 import './card.css';
 
@@ -10,18 +10,16 @@ interface Props {
 }
 
 function Card({ name, photoUrl, photoPlaceholder, actionLabel }: Props) {
-    const handleImageError = (
-        event: React.SyntheticEvent<HTMLImageElement, Event>,
-    ) => {
-        (event.target as HTMLImageElement).src = photoPlaceholder;
-    };
+    const [imageError, setImageError] = useState(false);
+
+    const handleImageError = useCallback(() => setImageError(true), []);
 
     return (
         <article className="card">
             <img
                 className="card__image"
                 crossOrigin="anonymous"
-                src={photoUrl}
+                src={imageError ? photoPlaceholder : photoUrl}
                 alt={name}
                 onError={handleImageError}
             />

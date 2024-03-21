@@ -6,7 +6,7 @@
 
 .card__image {
     border-radius: 10px;
-    width: 250px;
+    max-width: 320px;
 }
 
 .card__content {

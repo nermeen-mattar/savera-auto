@@ -2,27 +2,28 @@ import { useTranslation } from 'react-i18next';
 import petPlaceholder from '../../images/pet-placeholder.png';
 import { Pet } from '../../types/pet';
 import Card from '../card/Card';
-import './PetsList.css';
+import { PetsListSection } from './PetsList.style';
 
 interface Props {
     pets: Pet[];
 }
 
-function PetList({ pets }: Props) {
+function PetsList({ pets }: Props) {
     const { t } = useTranslation();
     return (
-        <section className="pet-list">
+        <PetsListSection>
             {pets.map((item) => (
-                <Card
-                    key={item.id}
-                    photoUrl={item.photoUrl}
-                    name={item.name}
-                    photoPlaceholder={petPlaceholder}
-                    actionLabel={t('actions.view')}
-                />
+                <section key={item.id} data-testid="pet-card">
+                    <Card
+                        photoUrl={item.photoUrl}
+                        name={item.name}
+                        photoPlaceholder={petPlaceholder}
+                        actionLabel={t('actions.view')}
+                    />
+                </section>
             ))}
-        </section>
+        </PetsListSection>
     );
 }
 
-export default PetList;
+export default PetsList;

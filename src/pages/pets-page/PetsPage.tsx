@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import CategoriesList from '../../components/categories-list/CategoriesList';
 import DirectorySection from '../../components/directory-section/DirectorySection';
 import Filter from '../../components/filter/Filter';
-import PetList from '../../components/pets-list/PetsList';
+import PetsList from '../../components/pets-list/PetsList';
 import treats from '../../images/treats.jpeg';
 import { fetchPets } from '../../state/actions/petActions';
 import { useAppDispatch } from '../../state/hooks';
@@ -15,7 +15,7 @@ import { Pet } from '../../types/pet';
 const MainContainer = styled.main`
     margin: 0 auto;
     max-width: 1200px;
-    padding: 20px;
+    padding: 50px;
 `;
 
 const ContentSecion = styled.section`
@@ -62,7 +62,7 @@ function PetsPage() {
                             items={allPets}
                             onFilterChange={handleFilterChange}
                         />
-                        <PetList pets={filteredPets} />
+                        <PetsList pets={filteredPets} />
                     </>
                 )}
                 <DirectorySection
