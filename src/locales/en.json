@@ -1,11 +1,13 @@
 {
+    "pets": "Pets",
     "pets-directory": "Pets Directory",
     "see-pets-for-adoption": "See all pets available for adoption, promote them and get them a Home",
     "actions": {
         "see-all": "See all",
         "view": "View"
     },
-    "categories": {
+    "category": {
+        "categories": "Categories",
         "all-pets": "All pets",
         "location-specific": "Location specific",
         "age-specific": "Age specific",

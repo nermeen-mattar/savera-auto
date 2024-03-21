@@ -1,15 +1,16 @@
-import { Card, CardIcon, CardIconWrapper } from './IconCard.style';
+import { ReactNode } from 'react';
+import { Card, CardIconWrapper, StyledIcon } from './IconCard.style';
 
 interface Props {
     label: string;
-    icon: string;
+    icon: ReactNode;
 }
 
 function IconCard({ label, icon }: Props) {
     return (
         <Card>
             <CardIconWrapper>
-                <CardIcon src={icon} alt={label} />
+                <StyledIcon>{icon}</StyledIcon>
             </CardIconWrapper>
             <p>{label}</p>
         </Card>

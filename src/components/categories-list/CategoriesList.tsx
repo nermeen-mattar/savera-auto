@@ -1,29 +1,33 @@
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
-import heartIcon from '../../icons/heart.svg';
+import IconClock from '../../icons/Clock';
+import IconConfettie from '../../icons/Confettie';
+import IconHeart from '../../icons/Heart';
+import IconHome from '../../icons/Home';
+import IconPin from '../../icons/Pin';
 import { theme } from '../../theme';
 import IconCard from '../icon-card/IconCard';
 
 const CATEGORIES = [
     {
         label: 'all-pets',
-        icon: heartIcon,
+        icon: <IconHeart />,
     },
     {
         label: 'location-specific',
-        icon: 'pin',
+        icon: <IconPin />,
     },
     {
         label: 'age-specific',
-        icon: 'clock',
+        icon: <IconClock />,
     },
     {
         label: 'available-now',
-        icon: 'confettie',
+        icon: <IconConfettie />,
     },
     {
         label: 'small-or-big-home',
-        icon: 'home',
+        icon: <IconHome />,
     },
 ];
 
@@ -31,7 +35,7 @@ const StyledCategoriesList = styled.div`
     display: flex;
     justify-content: space-between;
     overflow-x: auto;
-    padding-top: ${theme.spacing.small};
+    padding-top: ${theme.spacing.medium};
 `;
 
 function CategoriesList() {

@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
-import petIcon from '../../icons/pet-icon.svg';
+import IconPet from '../../icons/PetIcon';
 import { theme } from '../../theme';
 import { TextButton } from '../button-styles/ButtonStyles';
 
@@ -17,12 +17,6 @@ const StyledHeader = styled.header`
     }
 `;
 
-const Logo = styled.img`
-    width: 40px;
-    height: auto;
-    margin-right: 10px;
-`;
-
 function Header() {
     const { i18n } = useTranslation();
 
@@ -32,7 +26,7 @@ function Header() {
 
     return (
         <StyledHeader>
-            <Logo src={petIcon} alt="Pet Icon" />
+            <IconPet />
             <div>
                 <TextButton
                     onClick={changeLanguage}

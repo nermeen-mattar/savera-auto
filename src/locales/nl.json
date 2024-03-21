@@ -5,7 +5,7 @@
         "see-all": "Bekijk alles",
         "view": "Bekijk"
     },
-    "categories": {
+    "category": {
         "all-pets": "Alle huisdieren",
         "location-specific": "Locatiespecifiek",
         "age-specific": "Leeftijdsspecifiek",

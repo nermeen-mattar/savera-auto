@@ -17,8 +17,11 @@ export const theme = {
         fontSize: '16px',
     },
     spacing: {
-        small: '8px',
+        small: '10px',
         medium: '16px',
         large: '24px',
+    },
+    borderRadius: {
+        small: '10px',
     },
 };

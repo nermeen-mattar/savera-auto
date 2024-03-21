@@ -14,7 +14,9 @@ export const CardIconWrapper = styled.section`
     text-align: center;
 `;
 
-export const CardIcon = styled.img`
-    width: 60px;
-    margin-top: -15px;
+export const StyledIcon = styled.div`
+    margin: auto;
+    width: 50px;
+    margin-top: -12px;
+    fill: ${theme.colors.secondary};
 `;
