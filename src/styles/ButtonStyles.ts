@@ -3,7 +3,7 @@ import { theme } from '../theme';
 
 const buttonStyles = css`
     padding: 12px 36px;
-    border-radius: 20px;
+    border-radius: ${theme.borderRadius.large};
     border: none;
     cursor: pointer;
     font-weight: bold;

@@ -10,7 +10,7 @@ import treats from '../../images/treats.jpeg';
 import { fetchPets } from '../../state/actions/petActions';
 import { useAppDispatch } from '../../state/hooks';
 import { RootState } from '../../state/store';
-import { ContainerSection } from '../../styles/ContainerStyles';
+import { StyledContainerSection } from '../../styles/ContainerStyles';
 import { theme } from '../../theme';
 import { Pet } from '../../types/pet';
 
@@ -68,7 +68,7 @@ function PetsPage() {
     return (
         <MainContainer>
             <ContentSection>
-                <ContainerSection>
+                <StyledContainerSection>
                     <h2>{t('pets')}</h2>
                     {loading && (
                         <LoadingIndicator>{t('loading')}</LoadingIndicator>
@@ -83,7 +83,7 @@ function PetsPage() {
                             <PetsList pets={filteredPets} />
                         </>
                     )}
-                </ContainerSection>
+                </StyledContainerSection>
                 <DirectorySection
                     title={t('pets-directory')}
                     description={t('see-pets-for-adoption')}

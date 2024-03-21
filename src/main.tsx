@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { I18nextProvider } from 'react-i18next';
 import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
@@ -10,7 +10,15 @@ import reportWebVitals from './reportWebVitals';
 import { store } from './state/store';
 import { theme } from './theme';
 
-ReactDOM.render(
+const rootElement = document.getElementById('root');
+
+if (!rootElement) {
+    throw new Error("Root element 'root' not found");
+}
+
+const root = createRoot(rootElement);
+
+root.render(
     <Provider store={store}>
         <I18nextProvider i18n={i18n}>
             <ThemeProvider theme={theme}>
@@ -20,7 +28,6 @@ ReactDOM.render(
             </ThemeProvider>
         </I18nextProvider>
     </Provider>,
-    document.getElementById('root'),
 );
 
 reportWebVitals();

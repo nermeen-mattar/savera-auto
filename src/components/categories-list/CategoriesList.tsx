@@ -5,7 +5,7 @@ import IconConfettie from '../../icons/Confettie';
 import IconHeart from '../../icons/Heart';
 import IconHome from '../../icons/Home';
 import IconPin from '../../icons/Pin';
-import { ContainerSection } from '../../styles/ContainerStyles';
+import { StyledContainerSection } from '../../styles/ContainerStyles';
 import { theme } from '../../theme';
 import IconCard from '../icon-card/IconCard';
 
@@ -44,7 +44,7 @@ function CategoriesList() {
     const { t } = useTranslation();
 
     return (
-        <ContainerSection>
+        <StyledContainerSection>
             <h2>{t('category.categories')}</h2>
             <StyledCategoriesList>
                 {CATEGORIES.map((category) => (
@@ -55,7 +55,7 @@ function CategoriesList() {
                     />
                 ))}
             </StyledCategoriesList>
-        </ContainerSection>
+        </StyledContainerSection>
     );
 }
 
