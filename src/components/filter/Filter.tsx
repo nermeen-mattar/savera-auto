@@ -1,6 +1,10 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import styled from 'styled-components';
+import { theme } from '../../theme';
 import { Pet } from '../../types/pet';
 import { Dropdown } from '../dropdown';
+import MultiSelect from '../multi-select/MultiSelect';
 import SearchInput from '../search-input/SearchInput';
 
 interface FilterProps {
@@ -8,67 +12,87 @@ interface FilterProps {
     onFilterChange: (filteredPets: Pet[]) => void;
 }
 
+const FilterContainer = styled.section`
+    display: flex;
+    flex-direction: column;
+`;
+
+const InputContainer = styled.section`
+    max-width: 500px;
+`;
+
+const SelectContainer = styled.section`
+    display: flex;
+    gap: ${theme.spacing.small};
+`;
+
 const Filter: React.FC<FilterProps> = ({ items, onFilterChange }) => {
+    const { t } = useTranslation();
     const [filters, setFilters] = useState({
         searchQuery: '',
-        selectedType: '',
+        selectedTypes: [] as string[],
         selectedCategory: '',
     });
 
-    const handleSearchChange = (query: string) => {
+    const itemNames = items.map((item) => item.name);
+
+    const handleSearchChange = useCallback((query: string) => {
         setFilters((prevFilters) => ({ ...prevFilters, searchQuery: query }));
-        applyFilters({ ...filters, searchQuery: query });
-    };
+    }, []);
 
-    const handleTypeChange = (type: string) => {
-        setFilters((prevFilters) => ({ ...prevFilters, selectedType: type }));
-        applyFilters({ ...filters, selectedType: type });
-    };
+    const handleTypeChange = useCallback((types: string[]) => {
+        setFilters((prevFilters) => ({ ...prevFilters, selectedTypes: types }));
+    }, []);
 
-    const handleCategoryChange = (category: string) => {
+    const handleCategoryChange = useCallback((category: string) => {
         setFilters((prevFilters) => ({
             ...prevFilters,
             selectedCategory: category,
         }));
-        applyFilters({ ...filters, selectedCategory: category });
-    };
+    }, []);
 
-    const applyFilters = (filters: {
-        searchQuery: string;
-        selectedType: string;
-        selectedCategory: string;
-    }) => {
+    const applyFilters = useCallback(() => {
         const filteredPets = items.filter(
             (pet) =>
                 (filters.searchQuery === '' ||
                     pet.name
                         .toLowerCase()
                         .includes(filters.searchQuery.toLowerCase())) &&
-                (filters.selectedType === '' ||
-                    pet.species === filters.selectedType) &&
+                (filters.selectedTypes.length === 0 ||
+                    filters.selectedTypes.includes(pet.species)) &&
                 (filters.selectedCategory === '' ||
                     pet.species === filters.selectedCategory),
         );
         onFilterChange(filteredPets);
-    };
+    }, [filters, items, onFilterChange]);
+
+    useEffect(() => {
+        applyFilters();
+    }, [filters]);
 
     return (
-        <div>
-            <SearchInput
-                value={filters.searchQuery}
-                onChange={handleSearchChange}
-            />
-            <Dropdown
-                value={filters.selectedType}
-                onChange={handleTypeChange}
-                options={['Dog', 'Cat']}
-            />
-            <Dropdown
-                value={filters.selectedCategory}
-                onChange={handleCategoryChange}
-                options={['All pets', 'Location Specific', 'Age Specific']}
-            />
-        </div>
+        <FilterContainer>
+            <InputContainer>
+                <SearchInput
+                    placeholderLabel={t('search-pets')}
+                    searchItems={itemNames}
+                    onValueChange={handleSearchChange}
+                />
+            </InputContainer>
+            <SelectContainer>
+                <MultiSelect
+                    placeholderLabel={t('type')}
+                    onSelect={handleTypeChange}
+                    options={['Dog', 'Cat']}
+                />
+
+                <Dropdown
+                    value={filters.selectedCategory}
+                    onChange={handleCategoryChange}
+                    options={['All pets', 'Location Specific', 'Age Specific']}
+                />
+            </SelectContainer>
+        </FilterContainer>
     );
 };
 

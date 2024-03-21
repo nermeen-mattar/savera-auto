@@ -17,24 +17,24 @@ export const theme = {
         fontSize: '16px',
         h1: {
             desktop: '33px',
-            mobile: '26px'
+            mobile: '26px',
         },
         h2: {
             desktop: '28px',
-            mobile: '23px'
+            mobile: '23px',
         },
         h3: {
             desktop: '23px',
-            mobile: '20px'
+            mobile: '20px',
         },
         h4: {
             desktop: '18px',
-            mobile: '18px'
+            mobile: '18px',
         },
         body: {
             desktop: '16px',
-            mobile: '16px'
-        }
+            mobile: '16px',
+        },
     },
     spacing: {
         xsmall: '7px',

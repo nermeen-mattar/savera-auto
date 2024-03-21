@@ -8,8 +8,8 @@ import i18n from './i18n';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { store } from './state/store';
-import { theme } from './theme';
 import GlobalStyles from './styles/GlobalStyles';
+import { theme } from './theme';
 
 const rootElement = document.getElementById('root');
 
@@ -24,7 +24,7 @@ root.render(
         <I18nextProvider i18n={i18n}>
             <ThemeProvider theme={theme}>
                 <React.StrictMode>
-                    <GlobalStyles/>
+                    <GlobalStyles />
                     <App />
                 </React.StrictMode>
             </ThemeProvider>

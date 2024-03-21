@@ -1,9 +1,11 @@
 {
     "pets": "Huisdieren",
     "pets-directory": "Huisdieren Gids",
+    "search-pets": "Zoek naar huisdieren",
+    "type": "Type",
     "see-pets-for-adoption": "Bekijk alle huisdieren die beschikbaar zijn voor adoptie, promoot ze en geef ze een thuis",
     "results": "Resultaten",
-    "loading": "Bezig met laden",
+    "loading": "Laden",
     "language": {
         "english": "Engels",
         "dutch": "Nederlands",
