@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { theme } from '../../theme';
+import { theme } from '../theme';
 
 const buttonStyles = css`
     padding: 12px 36px;
@@ -20,10 +20,11 @@ export const LightButton = styled.button`
     width: 100%;
 `;
 
-export const DarkButton = styled.button`
+export const DarkButton = css`
     ${buttonStyles}
     background-color: ${theme.colors.secondary};
     color: white;
+    align-self: start;
 `;
 
 export const TextButton = styled.button`

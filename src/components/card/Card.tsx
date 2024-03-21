@@ -1,6 +1,13 @@
 import { useCallback, useState } from 'react';
-import { DarkButton } from '../button-styles/ButtonStyles';
-import './card.css';
+import {
+    ArrowRight,
+    ArrowRightWrapper,
+    Avatar,
+    Button,
+    CardWrapper,
+    Content,
+    Name,
+} from './Card.style';
 
 interface Props {
     name: string;
@@ -9,26 +16,28 @@ interface Props {
     actionLabel: string;
 }
 
-function Card({ name, photoUrl, photoPlaceholder, actionLabel }: Props) {
+const Card = ({ name, photoUrl, photoPlaceholder, actionLabel }: Props) => {
     const [imageError, setImageError] = useState(false);
 
     const handleImageError = useCallback(() => setImageError(true), []);
 
     return (
-        <article className="card">
-            <img
-                className="card__image"
+        <CardWrapper>
+            <Avatar
                 crossOrigin="anonymous"
                 src={imageError ? photoPlaceholder : photoUrl}
                 alt={name}
                 onError={handleImageError}
             />
-            <section className="card__content">
-                <h4 className="card__name">{name}</h4>
-                <DarkButton className="card__button">{actionLabel}</DarkButton>
-            </section>
-        </article>
+            <Content>
+                <Name>{name}</Name>
+                <Button>{actionLabel}</Button>
+            </Content>
+            <ArrowRightWrapper>
+                <ArrowRight />
+            </ArrowRightWrapper>
+        </CardWrapper>
     );
-}
+};
 
 export default Card;

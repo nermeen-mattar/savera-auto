@@ -10,18 +10,35 @@ import treats from '../../images/treats.jpeg';
 import { fetchPets } from '../../state/actions/petActions';
 import { useAppDispatch } from '../../state/hooks';
 import { RootState } from '../../state/store';
+import { ContainerSection } from '../../styles/ContainerStyles';
+import { theme } from '../../theme';
 import { Pet } from '../../types/pet';
 
 const MainContainer = styled.main`
     margin: 0 auto;
     max-width: 1200px;
     padding: 50px;
+
+    @media (max-width: 480px) {
+        padding: 0;
+    }
 `;
 
-const ContentSecion = styled.section`
+const ContentSection = styled.section`
     display: flex;
     flex-direction: column;
     gap: 40px;
+`;
+
+const LoadingIndicator = styled.div`
+    font-size: 24px;
+    text-align: center;
+`;
+
+const ErrorMessage = styled.div`
+    font-size: 24px;
+    color: ${theme.colors.red};
+    text-align: center;
 `;
 
 function PetsPage() {
@@ -50,21 +67,23 @@ function PetsPage() {
 
     return (
         <MainContainer>
-            <h2>{t('pets')}</h2>
-            <ContentSecion>
-                {loading ? (
-                    <p>Loading...</p>
-                ) : error ? (
-                    <p>Error: {error}</p>
-                ) : (
-                    <>
-                        <Filter
-                            items={allPets}
-                            onFilterChange={handleFilterChange}
-                        />
-                        <PetsList pets={filteredPets} />
-                    </>
-                )}
+            <ContentSection>
+                <ContainerSection>
+                    <h2>{t('pets')}</h2>
+                    {loading && (
+                        <LoadingIndicator>{t('loading')}</LoadingIndicator>
+                    )}
+                    {error && <ErrorMessage>{error}</ErrorMessage>}
+                    {!loading && !error && (
+                        <>
+                            <Filter
+                                items={allPets}
+                                onFilterChange={handleFilterChange}
+                            />
+                            <PetsList pets={filteredPets} />
+                        </>
+                    )}
+                </ContainerSection>
                 <DirectorySection
                     title={t('pets-directory')}
                     description={t('see-pets-for-adoption')}
@@ -75,7 +94,7 @@ function PetsPage() {
                     }}
                 />
                 <CategoriesList />
-            </ContentSecion>
+            </ContentSection>
         </MainContainer>
     );
 }

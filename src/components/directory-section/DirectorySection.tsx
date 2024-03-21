@@ -1,6 +1,6 @@
 import styled from 'styled-components';
+import { LightButton } from '../../styles/ButtonStyles';
 import { theme } from '../../theme';
-import { LightButton } from '../button-styles/ButtonStyles';
 
 interface Props {
     photo: string;
@@ -16,7 +16,7 @@ const SectionWrapper = styled.article`
 
 const Image = styled.div<{ photo: string }>`
     flex: 1;
-    border-radius: 20px 0 0 20px;
+    border-radius: ${theme.borderRadius.small} 0 0 ${theme.borderRadius.small};
     background-image: url(${(props) => props.photo});
     background-size: cover;
     background-position: center;
@@ -32,7 +32,7 @@ const ContentWrapper = styled.section`
     width: 30%;
     background: ${theme.colors.secondary};
     color: ${theme.colors.white};
-    border-radius: 0 20px 20px 0;
+    border-radius: 0 ${theme.borderRadius.small} ${theme.borderRadius.small} 0;
 `;
 
 const Title = styled.h2`

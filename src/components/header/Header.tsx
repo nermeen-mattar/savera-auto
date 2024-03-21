@@ -1,24 +1,24 @@
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import IconPet from '../../icons/PetIcon';
+import { TextButton } from '../../styles/ButtonStyles';
 import { theme } from '../../theme';
-import { TextButton } from '../button-styles/ButtonStyles';
 
 const StyledHeader = styled.header`
     background-color: ${theme.colors.primary};
     display: flex;
     justify-content: space-between;
-    padding: 10px 50px;
+    padding: ${theme.spacing.small} ${theme.spacing.large};
     align-items: center;
 
-    @media (max-width: 768px) {
+    @media (max-width: 480px) {
         background-color: transparent;
         padding: 10px;
     }
 `;
 
 function Header() {
-    const { i18n } = useTranslation();
+    const { t, i18n } = useTranslation();
 
     function changeLanguage(e) {
         i18n.changeLanguage(e.target.value);
@@ -31,16 +31,20 @@ function Header() {
                 <TextButton
                     onClick={changeLanguage}
                     value="en"
-                    title="Switch to English"
+                    title={t('language.switch-to', {
+                        language: t('language.english'),
+                    })}
                 >
-                    English
+                    {t('language.english')}
                 </TextButton>
                 <TextButton
                     onClick={changeLanguage}
                     value="nl"
-                    title="Switch to Dutch"
+                    title={t('language.switch-to', {
+                        language: t('language.dutch'),
+                    })}
                 >
-                    Dutch
+                    {t('language.dutch')}
                 </TextButton>
             </div>
         </StyledHeader>

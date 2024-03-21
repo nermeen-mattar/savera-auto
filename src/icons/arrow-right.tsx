@@ -10,18 +10,16 @@ const ArrowRightIcon = (props: SVGProps<SVGSVGElement>) => (
     >
         <path
             d="M4 12H20"
-            stroke="#111111"
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
         />
         <path
             d="M13 5L20 12L13 19"
-            stroke="#111111"
-            strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
         />
     </svg>
 );
+
 export default ArrowRightIcon;

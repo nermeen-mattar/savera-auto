@@ -18,8 +18,8 @@ export const theme = {
     },
     spacing: {
         small: '10px',
-        medium: '16px',
-        large: '24px',
+        medium: '20px',
+        large: '30px',
     },
     borderRadius: {
         small: '10px',
