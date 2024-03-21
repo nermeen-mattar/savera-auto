@@ -9,6 +9,7 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { store } from './state/store';
 import { theme } from './theme';
+import GlobalStyles from './styles/GlobalStyles';
 
 const rootElement = document.getElementById('root');
 
@@ -23,6 +24,7 @@ root.render(
         <I18nextProvider i18n={i18n}>
             <ThemeProvider theme={theme}>
                 <React.StrictMode>
+                    <GlobalStyles/>
                     <App />
                 </React.StrictMode>
             </ThemeProvider>
