@@ -2,10 +2,10 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { theme } from '../../../theme';
-import { AgeRange } from '../../../types/ageRange';
+import { Range } from '../../../types/range';
 
 interface Props {
-    onChange: (ageRange: AgeRange) => void;
+    onChange: (range: Range) => void;
     min: number;
     max: number;
 }
@@ -23,22 +23,22 @@ const SelectedRange = styled.div`
 `;
 
 function AgeRangeInput({ min, max, onChange }: Props) {
-    const [ageRange, setAgeRange] = useState<AgeRange>({ min, max });
+    const [range, setRange] = useState<Range>({ min, max });
     const { t } = useTranslation();
 
     useEffect(() => {
-        onChange(ageRange);
-    }, [ageRange, onChange]);
+        onChange(range);
+    }, [range, onChange]);
 
     const handleAgeChange = (event: ChangeEvent<HTMLInputElement>) => {
         const value = parseInt(event.target.value);
         const isMin = event.target.name === 'min';
-        if (isMin && value > ageRange.max) {
+        if (isMin && value > range.max) {
             return;
-        } else if (!isMin && value < ageRange.min) {
+        } else if (!isMin && value < range.min) {
             return;
         }
-        setAgeRange((prev) => ({
+        setRange((prev: Range) => ({
             min: isMin ? value : prev.min,
             max: isMin ? prev.max : value,
         }));
@@ -48,26 +48,26 @@ function AgeRangeInput({ min, max, onChange }: Props) {
         <SliderContainer>
             <p>{t('filters.min')}</p>
             <RangeSlider
-                id="age-min"
                 name="min"
                 type="range"
                 min={min}
                 max={max}
-                value={ageRange.min}
+                value={range.min}
                 onChange={handleAgeChange}
+                aria-label="Minimum"
             />
             <p>{t('filters.min')}</p>
             <RangeSlider
-                id="age-max"
                 name="max"
                 type="range"
                 min={min}
                 max={max}
-                value={ageRange.max}
+                value={range.max}
                 onChange={handleAgeChange}
+                aria-label="Maximum"
             />
             <SelectedRange>
-                {t('filters.selected-range')}: {ageRange.min} - {ageRange.max}
+                {t('filters.selected-range')}: {range.min} - {range.max}
             </SelectedRange>
         </SliderContainer>
     );

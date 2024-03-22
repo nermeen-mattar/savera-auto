@@ -1,4 +1,4 @@
-export interface AgeRange {
+export interface Range {
     max: number;
     min: number;
 }
