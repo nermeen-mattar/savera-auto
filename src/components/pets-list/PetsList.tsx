@@ -11,13 +11,13 @@ interface Props {
 function PetsList({ pets }: Props) {
     const { t } = useTranslation();
     return (
-        <section>
-            <h3>
+        <section aria-labelledby="petsListHeading">
+            <h3 id="petsListHeading">
                 {t('results')} {pets.length}
             </h3>
-            <PetsListSection>
+            <PetsListSection aria-live="polite" aria-relevant="additions removals">
                 {pets.map((item) => (
-                    <section key={item.id} data-testid="pet-card">
+                    <section key={item.id} data-testid="pet-card" aria-label={`${item.name} details`}>
                         <Card
                             photoUrl={item.photoUrl}
                             name={item.name}

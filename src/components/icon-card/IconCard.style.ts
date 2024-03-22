@@ -15,7 +15,7 @@ export const CardIconWrapper = styled.section`
     text-align: center;
 `;
 
-export const StyledIcon = styled.div`
+export const StyledIcon = styled.section`
     margin: auto;
     width: 50px;
     margin-top: -12px;

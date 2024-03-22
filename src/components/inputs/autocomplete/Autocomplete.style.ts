@@ -8,7 +8,7 @@ const borderStyle = (suggestions: string[]) => `
     border: 1px solid ${hasSuggestions(suggestions) ? theme.colors.secondary : theme.colors.grey};
 `;
 
-export const SearchContainer = styled.div<{ suggestions: string[] }>`
+export const SearchContainer = styled.section<{ suggestions: string[] }>`
     position: relative;
     ${(props) => borderStyle(props.suggestions)}
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -46,6 +46,6 @@ export const StyledSearchIcon = styled(IconSearch)`
     fill: ${theme.colors.lightBlue};
 `;
 
-export const SuggestionsContainer = styled.div`
+export const SuggestionsContainer = styled.section`
     width: 100%;
 `;

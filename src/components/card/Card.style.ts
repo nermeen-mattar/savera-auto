@@ -15,7 +15,7 @@ export const CardWrapper = styled.article`
     }
 `;
 
-export const Avatar = styled.div<{ src: string }>`
+export const Avatar = styled.section<{ src: string }>`
     border-radius: ${theme.borderRadius.small};
     height: 100%;
     background-image: url(${(props) => props.src});
@@ -28,7 +28,7 @@ export const Avatar = styled.div<{ src: string }>`
     }
 `;
 
-export const Content = styled.div`
+export const Content = styled.section`
     align-self: start;
     @media (max-width: ${theme.breakpoints.mobile}) {
         padding-inline-start: ${theme.spacing.small};

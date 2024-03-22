@@ -10,7 +10,7 @@ interface Props {
     max: number;
 }
 
-const SliderContainer = styled.div`
+const SliderContainer = styled.section`
     padding: ${theme.spacing.medium};
 `;
 
@@ -18,7 +18,7 @@ const RangeSlider = styled.input`
     width: 100%;
 `;
 
-const SelectedRange = styled.div`
+const SelectedRange = styled.section`
     text-align: center;
 `;
 
@@ -46,27 +46,29 @@ function AgeRangeInput({ min, max, onChange }: Props) {
 
     return (
         <SliderContainer>
-            <p>{t('filters.min')}</p>
+            <label htmlFor="min-range">{t('filters.min')}</label>
             <RangeSlider
+                id="min-range"
                 name="min"
                 type="range"
                 min={min}
                 max={max}
                 value={range.min}
                 onChange={handleAgeChange}
-                aria-label="Minimum"
+                aria-label={t('filters.aria-min')}
             />
-            <p>{t('filters.min')}</p>
+            <label htmlFor="max-range">{t('filters.max')}</label>
             <RangeSlider
+                id="max-range"
                 name="max"
                 type="range"
                 min={min}
                 max={max}
                 value={range.max}
                 onChange={handleAgeChange}
-                aria-label="Maximum"
+                aria-label={t('filters.aria-max')}
             />
-            <SelectedRange>
+            <SelectedRange aria-live="polite">
                 {t('filters.selected-range')}: {range.min} - {range.max}
             </SelectedRange>
         </SliderContainer>

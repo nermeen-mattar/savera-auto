@@ -32,7 +32,7 @@ const CATEGORIES = [
     },
 ];
 
-const StyledCategoriesList = styled.div`
+const StyledCategoriesList = styled.section`
     display: flex;
     justify-content: space-between;
     overflow-x: auto;

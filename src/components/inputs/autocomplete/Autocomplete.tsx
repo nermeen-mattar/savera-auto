@@ -48,23 +48,29 @@ function Autocomplete({ onValueChange, searchItems, placeholderLabel }: Props) {
     );
 
     return (
-        <SearchContainer suggestions={suggestions}>
-            <AutocompleteWrapper>
+        <SearchContainer suggestions={suggestions} aria-label="Search container">
+            <AutocompleteWrapper role="combobox" aria-expanded={suggestions.length > 0} aria-haspopup="listbox" aria-owns="suggestionsList">
                 <Input
                     suggestions={suggestions}
                     type="text"
                     placeholder={placeholderLabel}
                     value={value}
                     onChange={handleInputChange}
+                    aria-autocomplete="list"
+                    aria-controls="suggestionsList"
+                    aria-activedescendant={suggestions.length > 0 ? suggestions[0] : undefined}
                 />
                 <StyledSearchIcon />
             </AutocompleteWrapper>
             {suggestions.length > 0 && (
-                <SuggestionsContainer>
+                <SuggestionsContainer id="suggestionsList" role="listbox">
                     <OptionsList>
-                        {suggestions.map((suggestion) => (
+                        {suggestions.map((suggestion, index) => (
                             <OptionItem
                                 key={suggestion}
+                                id={`suggestion-${index}`}
+                                role="option"
+                                aria-selected={value === suggestion}
                                 onClick={() =>
                                     handleSuggestionSelection(suggestion)
                                 }
