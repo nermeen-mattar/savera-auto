@@ -1,16 +1,23 @@
 import { Pet } from '../../types/pet';
 import {
     FETCH_PETS_FAILURE,
+    FETCH_PETS_MAX_MIN_AGES,
     FETCH_PETS_REQUEST,
     FETCH_PETS_SUCCESS,
-    FETCH_PET_TYPES_SUCCESS,
+    FETCH_PET_TYPES,
 } from '../actions/petActions';
+
+export interface MaxMinAgeState {
+    max: number;
+    min: number;
+}
 
 interface PetsState {
     loading: boolean;
     pets: Pet[];
     types: string[];
     error: string | null;
+    maxMinAge: MaxMinAgeState;
 }
 
 const initialState: PetsState = {
@@ -18,11 +25,12 @@ const initialState: PetsState = {
     types: [],
     loading: false,
     error: null,
+    maxMinAge: { max: 0, min: 0 },
 };
 
 interface Action {
     type: string;
-    payload?: Pet[] | string | string[];
+    payload?: Pet[] | string | string[] | MaxMinAgeState;
 }
 
 const petReducer = (
@@ -42,16 +50,21 @@ const petReducer = (
                 loading: false,
                 pets: action.payload as Pet[],
             };
-        case FETCH_PET_TYPES_SUCCESS:
-            return {
-                ...state,
-                types: action.payload as string[],
-            };
         case FETCH_PETS_FAILURE:
             return {
                 ...state,
                 loading: false,
                 error: action.payload as string,
+            };
+        case FETCH_PET_TYPES:
+            return {
+                ...state,
+                types: action.payload as string[],
+            };
+        case FETCH_PETS_MAX_MIN_AGES:
+            return {
+                ...state,
+                maxMinAge: action.payload as MaxMinAgeState,
             };
         default:
             return state;
