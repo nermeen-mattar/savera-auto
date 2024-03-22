@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { OptionsList } from '../../styles/listStyles';
+import { OptionsList } from '../../styles/list.styles';
 import { theme } from '../../theme';
 
 export const SelectedOptions = styled.button<{ open: boolean }>`

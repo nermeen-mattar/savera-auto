@@ -1,13 +1,6 @@
 import { useCallback, useState } from 'react';
-import {
-    ArrowRight,
-    ArrowRightWrapper,
-    Avatar,
-    Button,
-    CardWrapper,
-    Content,
-    Name,
-} from './Card.style';
+import { ArrowRight, ArrowRightWrapper } from '../../styles/Icon.styles';
+import { Avatar, Button, CardWrapper, Content, Name } from './Card.style';
 
 interface Props {
     name: string;

@@ -8,7 +8,7 @@ import i18n from './i18n';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { store } from './state/store';
-import GlobalStyles from './styles/GlobalStyles';
+import GlobalStyles from './styles/Global.styles';
 import { theme } from './theme';
 
 const rootElement = document.getElementById('root');

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import ArrowRightIcon from '../../icons/arrow-right';
-import { DarkButton } from '../../styles/ButtonStyles';
+import { DarkButton } from '../../styles/Button.styles';
 import { theme } from '../../theme';
 
 export const CardWrapper = styled.article`
@@ -42,27 +42,5 @@ export const Button = styled.button`
     ${DarkButton}
     @media (max-width: 480px) {
         display: none;
-    }
-`;
-
-export const ArrowRightWrapper = styled.section`
-    flex: 1;
-    text-align: right;
-
-    @media (max-width: 480px) {
-        flex: 1;
-        text-align: right;
-    }
-`;
-
-export const ArrowRight = styled(ArrowRightIcon)`
-    display: none;
-    fill: ${theme.colors.white};
-    stroke: ${theme.colors.white};
-    @media (max-width: 480px) {
-        display: block;
-        background: ${theme.colors.secondary};
-        border-radius: 50%;
-        margin-left: auto;
     }
 `;

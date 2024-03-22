@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useState } from 'react';
-import { ChevronIcon } from '../../styles/ChevronStyles';
-import { OptionItem } from '../../styles/listStyles';
+import { ChevronIcon } from '../../styles/Icon.styles';
+import { OptionItem } from '../../styles/list.styles';
 import {
     OptionCheckbox,
     OptionsContainer,

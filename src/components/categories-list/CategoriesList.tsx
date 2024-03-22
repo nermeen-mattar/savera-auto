@@ -5,7 +5,7 @@ import IconConfettie from '../../icons/Confettie';
 import IconHeart from '../../icons/Heart';
 import IconHome from '../../icons/Home';
 import IconPin from '../../icons/Pin';
-import { StyledContainerSection } from '../../styles/ContainerStyles';
+import { StyledContainerSection } from '../../styles/Container.styles';
 import { theme } from '../../theme';
 import IconCard from '../icon-card/IconCard';
 

@@ -11,7 +11,7 @@ import treats from '../../images/treats.jpeg';
 import { fetchPets } from '../../state/actions/petActions';
 import { useAppDispatch } from '../../state/hooks';
 import { RootState } from '../../state/store';
-import { StyledContainerSection } from '../../styles/ContainerStyles';
+import { StyledContainerSection } from '../../styles/Container.styles';
 import { theme } from '../../theme';
 import { Pet } from '../../types/pet';
 

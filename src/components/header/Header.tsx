@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import IconPet from '../../icons/PetIcon';
-import { TextButton } from '../../styles/ButtonStyles';
+import { TextButton } from '../../styles/Button.styles';
 import { theme } from '../../theme';
 
 const StyledHeader = styled.header`
