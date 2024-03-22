@@ -16,20 +16,20 @@ const buttonStyles = css`
 
 export const LightButton = styled.button`
     ${buttonStyles}
-    background-color: white;
+    background-color: ${theme.colors.white};
 `;
 
 export const DarkButton = css`
     ${buttonStyles}
     background-color: ${theme.colors.secondary};
-    color: white;
+    color: ${theme.colors.white};
 `;
 
 export const TextButton = styled.button`
     background-color: transparent;
     border: none;
-    color: white;
-    font-size: 16px;
+    color: ${theme.colors.white};
+    font-size: ${theme.typography.fontSize};
     margin-left: 10px;
     cursor: pointer;
 `;
