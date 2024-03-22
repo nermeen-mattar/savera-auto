@@ -1,15 +1,23 @@
 import './App.css';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Footer from './components/footer/Footer';
 import Header from './components/header/Header';
 import PetsPage from './pages/pets-page/PetsPage';
 
+const PetDetailsPage = () => <div>Pet Details Page Placeholder</div>;
+
 function App() {
     return (
-        <>
-            <Header />
-            <PetsPage />
-            <Footer />
-        </>
+        <Router>
+            <>
+                <Header />
+                <Routes>
+                    <Route path="/" element={<PetsPage />} />
+                    <Route path="/pet/:id" element={<PetDetailsPage />} />
+                </Routes>
+                <Footer />
+            </>
+        </Router>
     );
 }
 
