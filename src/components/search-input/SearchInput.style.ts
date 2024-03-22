@@ -9,12 +9,11 @@ export const SearchContainer = styled.div<{ suggestions: string[] }>`
             props.suggestions.length
                 ? theme.colors.secondary
                 : theme.colors.grey};
-    padding: 5px 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: ${theme.borderRadius.large};
 `;
 
-export const SearchInputWrapper = styled.div`
+export const SearchInputWrapper = styled.section`
     display: flex;
     align-items: center;
     position: relative;

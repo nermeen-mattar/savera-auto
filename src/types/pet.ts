@@ -6,4 +6,5 @@ export interface Pet {
     birthYear: number;
     dateAdded: string;
     photoUrl: string;
+    age?: number;
 }

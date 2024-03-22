@@ -6,6 +6,8 @@ import { Pet } from '../../types/pet';
 import { Dropdown } from '../dropdown';
 import MultiSelect from '../multi-select/MultiSelect';
 import SearchInput from '../search-input/SearchInput';
+import { useAppSelector } from '../../state/hooks';
+import { RootState } from '../../state/store';
 
 interface FilterProps {
     items: Pet[];
@@ -29,6 +31,8 @@ const SelectContainer = styled.section`
 
 const Filter: React.FC<FilterProps> = ({ items, onFilterChange }) => {
     const { t } = useTranslation();
+    const petTypes = useAppSelector((state: RootState) => state.pet.types);
+
     const [filters, setFilters] = useState({
         searchQuery: '',
         selectedTypes: [] as string[],
@@ -84,7 +88,7 @@ const Filter: React.FC<FilterProps> = ({ items, onFilterChange }) => {
                 <MultiSelect
                     placeholderLabel={t('type')}
                     onSelect={handleTypeChange}
-                    options={['Dog', 'Cat']}
+                    options={petTypes}
                 />
 
                 <Dropdown

@@ -15,8 +15,8 @@ export const SelectedOptions = styled.button<{ open: boolean }>`
     justify-content: space-between;
     border-radius: ${({ open }) =>
         open
-            ? `${theme.borderRadius.medium} ${theme.borderRadius.medium} 0 0`
-            : theme.borderRadius.medium};
+            ? `${theme.borderRadius.large} ${theme.borderRadius.large} 0 0`
+            : theme.borderRadius.large};
     font-size: ${theme.typography.body.desktop};
 `;
 
@@ -30,8 +30,8 @@ export const OptionsDropdown = styled(OptionsList)`
     border: 1px solid ${theme.colors.lightGrey};
     box-sizing: border-box;
     border-top: none;
-    border-bottom-left-radius: ${theme.borderRadius.medium};
-    border-bottom-right-radius: ${theme.borderRadius.medium};
+    border-bottom-left-radius: ${theme.borderRadius.large};
+    border-bottom-right-radius: ${theme.borderRadius.large};
     font-size: ${theme.typography.bodySmall.desktop};
 `;
 
