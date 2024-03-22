@@ -8,7 +8,7 @@ export const OptionsList = styled.ul`
 `;
 
 export const OptionItem = styled.li`
-    padding: 8px 16px;
+    padding: ${theme.spacing.small} 14px;
     cursor: pointer;
     &:hover {
         background-color: ${theme.colors.lightYellow};

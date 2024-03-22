@@ -26,7 +26,6 @@ export const getMaxMinAges = (pets: Pet[]): { max: number; min: number } => {
     let max = 0;
     let min = Infinity;
     pets.forEach((pet) => {
-        console.log('pet.age', pet.age);
         if (pet.age > max) {
             max = pet.age;
         }
