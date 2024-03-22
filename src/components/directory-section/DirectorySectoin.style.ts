@@ -10,7 +10,7 @@ export const SectionWrapper = styled.article`
     }
 `;
 
-export const Image = styled.div<{ photo: string }>`
+export const Image = styled.section<{ photo: string }>`
     flex: 1;
     border-radius: ${theme.borderRadius.small} 0 0 ${theme.borderRadius.small};
     background-image: url(${(props) => props.photo});

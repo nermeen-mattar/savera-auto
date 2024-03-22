@@ -47,23 +47,34 @@ function MultiSelect({
     );
 
     return (
-        <section>
-            <SelectedOptions open={isOpen} onClick={toggleDropdown}>
-                <label>{selectedOptionsLabel}</label>
-                <ChevronIcon open={isOpen} />
+        <section aria-labelledby="multiSelectLabel">
+            <SelectedOptions
+                open={isOpen}
+                onClick={toggleDropdown}
+                aria-haspopup="listbox"
+                aria-expanded={isOpen}
+            >
+                <label id="multiSelectLabel">{selectedOptionsLabel}</label>
+                <ChevronIcon
+                    open={isOpen}
+                    aria-label={isOpen ? 'Collapse options' : 'Expand options'}
+                />
             </SelectedOptions>
             {isOpen && (
                 <OptionsContainer>
-                    <OptionsDropdown>
+                    <OptionsDropdown role="listbox" aria-multiselectable="true">
                         {options.map((option) => (
                             <OptionItem
                                 key={option}
                                 onClick={() => handleOptionClick(option)}
+                                role="option"
+                                aria-selected={selectedOptions.includes(option)}
                             >
                                 <OptionCheckbox
                                     type="checkbox"
                                     checked={selectedOptions.includes(option)}
                                     readOnly
+                                    aria-hidden="true"
                                 />
                                 {option}
                             </OptionItem>

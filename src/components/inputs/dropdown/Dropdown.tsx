@@ -20,14 +20,14 @@ function Dropdown({ children, placeholderLabel }: DropdownProps) {
     );
 
     return (
-        <section>
-            <SelectedOptions open={isOpen} onClick={toggleDropdown}>
-                <label>{placeholderLabel}</label>
-                <ChevronIcon open={isOpen} />
+        <section aria-labelledby="dropdownLabel">
+            <SelectedOptions open={isOpen} onClick={toggleDropdown} aria-haspopup="listbox" aria-expanded={isOpen}>
+                <label id="dropdownLabel">{placeholderLabel}</label>
+                <ChevronIcon open={isOpen} aria-label={isOpen ? 'Collapse options' : 'Expand options'} />
             </SelectedOptions>
             {isOpen && (
                 <OptionsContainer>
-                    <OptionsDropdown>{children}</OptionsDropdown>
+                    <OptionsDropdown role="listbox" aria-labelledby="dropdownLabel">{children}</OptionsDropdown>
                 </OptionsContainer>
             )}
         </section>

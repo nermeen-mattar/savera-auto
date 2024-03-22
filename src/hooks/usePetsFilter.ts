@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Range } from '../types/range';
 import { Pet } from '../types/pet';
+import { Range } from '../types/range';
 
 export interface Filters {
     searchQuery: string;

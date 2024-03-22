@@ -31,12 +31,12 @@ const ContentSection = styled.section`
     gap: 40px;
 `;
 
-const LoadingIndicator = styled.div`
+const LoadingIndicator = styled.section`
     font-size: 24px;
     text-align: center;
 `;
 
-const ErrorMessage = styled.div`
+const ErrorMessage = styled.section`
     font-size: 24px;
     color: ${theme.colors.red};
     text-align: center;
