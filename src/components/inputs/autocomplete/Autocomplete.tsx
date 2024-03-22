@@ -2,9 +2,9 @@ import React, { useCallback, useState } from 'react';
 import { OptionItem, OptionsList } from '../../../styles/list.styles';
 import { simpleFuzzySearch } from '../../../utils/fuzzy-search';
 import {
+    AutocompleteWrapper,
     Input,
     SearchContainer,
-    AutocompleteWrapper,
     StyledSearchIcon,
     SuggestionsContainer,
 } from './Autocomplete.style';

@@ -34,6 +34,7 @@ export const ContentWrapper = styled.section`
     background: ${theme.colors.secondary};
     color: ${theme.colors.white};
     border-radius: 0 ${theme.borderRadius.small} ${theme.borderRadius.small} 0;
+    box-sizing: border-box;
     @media (max-width: ${theme.breakpoints.mobile}) {
         border-radius: 0;
         width: 100%;

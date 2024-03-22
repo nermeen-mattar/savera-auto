@@ -18,16 +18,16 @@ const Card = ({ name, photoUrl, photoPlaceholder, actionLabel }: Props) => {
         <CardWrapper>
             <Avatar
                 crossOrigin="anonymous"
-                src={imageError ? photoPlaceholder : photoUrl}
-                alt={name}
+                img={imageError ? photoPlaceholder : photoUrl}
+                alt={`Profile picture of ${name}`}
                 onError={handleImageError}
             />
             <Content>
                 <Name>{name}</Name>
-                <Button>{actionLabel}</Button>
+                <Button aria-label={`Action for ${name}`}>{actionLabel}</Button>
             </Content>
             <ArrowRightWrapper>
-                <ArrowRight />
+                <ArrowRight aria-label={`Action for ${name}`} />
             </ArrowRightWrapper>
         </CardWrapper>
     );

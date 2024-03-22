@@ -6,9 +6,9 @@ import { useAppSelector } from '../../state/hooks';
 import { RootState } from '../../state/store';
 import { theme } from '../../theme';
 import { Pet } from '../../types/pet';
-import MultiSelect from '../inputs/multi-select/MultiSelect';
 import Autocomplete from '../inputs/autocomplete/Autocomplete';
 import { Dropdown } from '../inputs/dropdown/Dropdown';
+import MultiSelect from '../inputs/multi-select/MultiSelect';
 
 interface FilterProps {
     items: Pet[];
