@@ -15,13 +15,11 @@ export const fixDateFormat = (date: string) =>
         ); /* To be replaced with date-fns which is safer as it cover wider cases */
 
 export const getUniquePetTypes = (pets: Pet[]): string[] => {
-    const types: string[] = [];
+    const types = new Set<string>();
     pets.forEach((pet) => {
-        if (!types.includes(pet.species)) {
-            types.push(pet.species);
-        }
+        types.add(pet.species);
     });
-    return types;
+    return Array.from(types);
 };
 
 export const getMaxMinAges = (pets: Pet[]): { max: number; min: number } => {
