@@ -6,7 +6,7 @@ import {
     Image,
     SectionWrapper,
     Title,
-} from './DirectorySectoin.style';
+} from './DirectorySection.style';
 
 interface Props {
     photo: string;
