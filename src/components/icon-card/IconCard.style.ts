@@ -4,6 +4,7 @@ import { theme } from '../../theme';
 export const Card = styled.section`
     display: flex;
     flex-direction: column;
+    font-weight: bold;
 `;
 
 export const CardIconWrapper = styled.section`

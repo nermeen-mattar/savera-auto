@@ -1,13 +1,14 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { Filters } from '../../hooks/usePetsFilter';
 import { useAppSelector } from '../../state/hooks';
 import { RootState } from '../../state/store';
 import { theme } from '../../theme';
+import { AgeRange } from '../../types/ageRange';
 import { Pet } from '../../types/pet';
 import Autocomplete from '../inputs/autocomplete/Autocomplete';
-import { Dropdown } from '../inputs/dropdown/Dropdown';
+import Dropdown from '../inputs/dropdown/Dropdown';
 import MultiSelect from '../inputs/multi-select/MultiSelect';
 import Slider from '../inputs/slider/Slider';
 import ToggleButton from '../inputs/toggle-button/ToggleButton';
@@ -28,6 +29,7 @@ const InputContainer = styled.section`
 
 const SelectContainer = styled.section`
     display: flex;
+    flex-wrap: wrap;
     gap: ${theme.spacing.small};
     margin-top: ${theme.spacing.medium};
 `;
@@ -35,16 +37,19 @@ const SelectContainer = styled.section`
 const Filter: React.FC<FilterProps> = ({ items, onFilter }) => {
     const { t } = useTranslation();
     const petTypes = useAppSelector((state: RootState) => state.pet.types);
+    const minMaxAges = useAppSelector(
+        (state: RootState) => state.pet.maxMinAge,
+    );
 
     const [filters, setFilters] = useState({
         searchQuery: '',
         selectedTypes: [] as string[],
-        selectedCategory: '',
         sortByLatestAdded: false,
         isAvailableNow: false,
+        ageRange: { min: 0, max: 100 },
     });
 
-    const itemNames = items.map((item) => item.name);
+    const itemNames = useMemo(() => items.map((item) => item.name), [items]);
 
     const handleSearchChange = useCallback((query: string) => {
         setFilters((prevFilters) => ({ ...prevFilters, searchQuery: query }));
@@ -54,18 +59,11 @@ const Filter: React.FC<FilterProps> = ({ items, onFilter }) => {
         setFilters((prevFilters) => ({ ...prevFilters, selectedTypes: types }));
     }, []);
 
-    const handleCategoryChange = useCallback((category: string) => {
-        setFilters((prevFilters) => ({
-            ...prevFilters,
-            selectedCategory: category,
-        }));
-    }, []);
-
     const handleLatestAddedToggle = useCallback(
-        (isSortByLatestAdded: boolean) => {
+        (sortByLatestAdded: boolean) => {
             setFilters((prevFilters) => ({
                 ...prevFilters,
-                sortByLatestAdded: isSortByLatestAdded,
+                sortByLatestAdded,
             }));
         },
         [],
@@ -74,7 +72,14 @@ const Filter: React.FC<FilterProps> = ({ items, onFilter }) => {
     const handleAvailableNowToggle = useCallback((isAvailableNow: boolean) => {
         setFilters((prevFilters) => ({
             ...prevFilters,
-            isAvailableNow: isAvailableNow,
+            isAvailableNow,
+        }));
+    }, []);
+
+    const handleAgeRangeChange = useCallback((ageRange: AgeRange) => {
+        setFilters((prevFilters) => ({
+            ...prevFilters,
+            ageRange,
         }));
     }, []);
 
@@ -97,12 +102,6 @@ const Filter: React.FC<FilterProps> = ({ items, onFilter }) => {
                     onSelect={handleTypeChange}
                     options={petTypes}
                 />
-
-                <Dropdown
-                    value={filters.selectedCategory}
-                    onChange={handleCategoryChange}
-                    options={['All pets', 'Location Specific', 'Age Specific']}
-                />
                 <ToggleButton
                     onToggle={handleLatestAddedToggle}
                     placeholderLabel={t('filters.latest-added')}
@@ -111,7 +110,9 @@ const Filter: React.FC<FilterProps> = ({ items, onFilter }) => {
                     onToggle={handleAvailableNowToggle}
                     placeholderLabel={t('category.available-now')}
                 />
-                {/* <Slider onChange={handleAvailableNowToggle} /> */}
+                <Dropdown placeholderLabel={t('filters.age-range')}>
+                    <Slider {...minMaxAges} onChange={handleAgeRangeChange} />
+                </Dropdown>
             </SelectContainer>
         </FilterContainer>
     );

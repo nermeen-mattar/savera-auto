@@ -1,4 +1,3 @@
-// Start of Selection
 import { ArrowRight } from '../../styles/Icon.styles';
 import {
     Button,
@@ -14,7 +13,7 @@ interface Props {
     title: string;
     description: string;
     actionLabel: string;
-    onClick: () => void;
+    onClick?: () => void;
 }
 
 function DirectorySection({

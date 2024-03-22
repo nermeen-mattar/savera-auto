@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import { theme } from '../theme';
 
 const buttonStyles = css`
-    padding: ${theme.spacing.small} ${theme.spacing.large};
+    padding: ${theme.spacing.small} ${theme.spacing.medium};
     border-radius: ${theme.borderRadius.large};
     border: none;
     cursor: pointer;
@@ -23,7 +23,6 @@ export const DarkButton = css`
     ${buttonStyles}
     background-color: ${theme.colors.secondary};
     color: white;
-    align-self: start;
 `;
 
 export const TextButton = styled.button`

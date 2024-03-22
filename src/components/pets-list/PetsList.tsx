@@ -12,7 +12,9 @@ function PetsList({ pets }: Props) {
     const { t } = useTranslation();
     return (
         <section>
-            <h3>{t('results')}</h3>
+            <h3>
+                {t('results')} {pets.length}
+            </h3>
             <PetsListSection>
                 {pets.map((item) => (
                     <section key={item.id} data-testid="pet-card">

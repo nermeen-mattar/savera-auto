@@ -31,6 +31,7 @@ export const ContentWrapper = styled.section`
     padding-left: ${theme.spacing.large};
     text-align: left;
     width: 30%;
+    min-width: 200px;
     background: ${theme.colors.secondary};
     color: ${theme.colors.white};
     border-radius: 0 ${theme.borderRadius.small} ${theme.borderRadius.small} 0;

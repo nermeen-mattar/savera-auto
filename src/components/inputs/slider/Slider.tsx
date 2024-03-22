@@ -1,50 +1,76 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import styled from 'styled-components';
+import { theme } from '../../../theme';
+import { AgeRange } from '../../../types/ageRange';
 
 interface Props {
-    onChange: (ageRange: [number, number]) => void;
+    onChange: (ageRange: AgeRange) => void;
+    min: number;
+    max: number;
 }
 
-function Slider({ onChange }: Props) {
-    const [minAge, setMinAge] = useState(0);
-    const [maxAge, setMaxAge] = useState(20);
+const SliderContainer = styled.div`
+    padding: ${theme.spacing.medium};
+`;
 
-    const handleMinAgeChange = (event: ChangeEvent<HTMLInputElement>) => {
-        const newMinAge = parseInt(event.target.value);
-        setMinAge(newMinAge);
-        onChange([newMinAge, maxAge]);
-    };
+const RangeSlider = styled.input`
+    width: 100%;
+`;
 
-    const handleMaxAgeChange = (event: ChangeEvent<HTMLInputElement>) => {
-        const newMaxAge = parseInt(event.target.value);
-        setMaxAge(newMaxAge);
-        onChange([minAge, newMaxAge]);
+const SelectedRange = styled.div`
+    text-align: center;
+`;
+
+function AgeRangeInput({ min, max, onChange }: Props) {
+    const [ageRange, setAgeRange] = useState<AgeRange>({ min, max });
+    const { t } = useTranslation();
+
+    useEffect(() => {
+        onChange(ageRange);
+    }, [ageRange, onChange]);
+
+    const handleAgeChange = (event: ChangeEvent<HTMLInputElement>) => {
+        const value = parseInt(event.target.value);
+        const isMin = event.target.name === 'min';
+        if (isMin && value > ageRange.max) {
+            return;
+        } else if (!isMin && value < ageRange.min) {
+            return;
+        }
+        setAgeRange((prev) => ({
+            min: isMin ? value : prev.min,
+            max: isMin ? prev.max : value,
+        }));
     };
 
     return (
-        <div style={{ marginTop: 20 }}>
-            <label htmlFor="min-age">Min Age: {minAge}</label>
-            <input
+        <SliderContainer>
+            <p>{t('filters.min')}</p>
+            <RangeSlider
+                id="age-min"
+                name="min"
                 type="range"
-                id="min-age"
-                name="min-age"
-                min={0}
-                max={20}
-                value={minAge}
-                onChange={handleMinAgeChange}
+                min={min}
+                max={max}
+                value={ageRange.min}
+                onChange={handleAgeChange}
             />
-            <br />
-            <label htmlFor="max-age">Max Age: {maxAge}</label>
-            <input
+            <p>{t('filters.min')}</p>
+            <RangeSlider
+                id="age-max"
+                name="max"
                 type="range"
-                id="max-age"
-                name="max-age"
-                min={0}
-                max={20}
-                value={maxAge}
-                onChange={handleMaxAgeChange}
+                min={min}
+                max={max}
+                value={ageRange.max}
+                onChange={handleAgeChange}
             />
-        </div>
+            <SelectedRange>
+                {t('filters.selected-range')}: {ageRange.min} - {ageRange.max}
+            </SelectedRange>
+        </SliderContainer>
     );
 }
 
-export default Slider;
+export default AgeRangeInput;

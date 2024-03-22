@@ -7,7 +7,11 @@
     "loading": "Loading",
     "filters": {
         "type": "Type",
-        "latest-added": "Latest added"
+        "latest-added": "Latest added",
+        "selected-range": "Selected Range",
+        "age-range": "Age Range",
+        "min": "Min",
+        "max": "Max"
     },
     "language": {
         "english": "English",

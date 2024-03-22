@@ -67,7 +67,10 @@ function PetsPage() {
                     {error && <ErrorMessage>{error}</ErrorMessage>}
                     {!loading && !error && (
                         <>
-                            <Filter items={allPets} onFilter={setFilters} />
+                            <Filter
+                                items={filteredPets}
+                                onFilter={setFilters}
+                            />
                             <PetsList pets={filteredPets} />
                         </>
                     )}
@@ -77,9 +80,6 @@ function PetsPage() {
                     description={t('see-pets-for-adoption')}
                     actionLabel={t('actions.see-all')}
                     photo={treats}
-                    onClick={() => {
-                        alert('hi');
-                    }}
                 />
                 <CategoriesList />
             </ContentSection>

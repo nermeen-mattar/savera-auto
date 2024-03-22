@@ -26,6 +26,7 @@ const GlobalStyles = createGlobalStyle`
 
   p {
     font-size: ${theme.typography.body.desktop};
+    margin: 0;
   }
 
   @media (max-width: ${theme.breakpoints.mobile}) {

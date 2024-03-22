@@ -20,11 +20,7 @@ export const fetchPetsRequest = () => ({
 
 export const fetchPetsSuccess = (pets: Pet[]) => ({
     type: FETCH_PETS_SUCCESS,
-    payload: pets.map((pet) => ({
-        ...pet,
-        dateAdded: fixDateFormat(pet.dateAdded),
-        age: calculateAge(pet.birthYear),
-    })),
+    payload: pets,
 });
 
 export const fetchPetsFailure = (error: string) => ({
@@ -47,9 +43,21 @@ export const fetchPets = () => {
         dispatch(fetchPetsRequest());
         try {
             const pets = await fetchPetsData();
-            dispatch(fetchPetsSuccess(pets));
-            dispatch(fetchPetTypes(getUniquePetTypes(pets)));
-            dispatch(fetchPetsMaxAndMinAge(getMaxMinAges(pets)));
+            // Perform all necessary data transformations here
+            const petsWithFormattedDatesAndAges = pets.map((pet) => ({
+                ...pet,
+                dateAdded: fixDateFormat(pet.dateAdded),
+                age: calculateAge(pet.birthYear),
+            }));
+            const uniquePetTypes = getUniquePetTypes(
+                petsWithFormattedDatesAndAges,
+            );
+            const maxMinAges = getMaxMinAges(petsWithFormattedDatesAndAges);
+
+            // Now dispatch actions with the fully prepared data
+            dispatch(fetchPetsSuccess(petsWithFormattedDatesAndAges));
+            dispatch(fetchPetTypes(uniquePetTypes));
+            dispatch(fetchPetsMaxAndMinAge(maxMinAges));
         } catch (error) {
             dispatch(fetchPetsFailure(error.message));
         }
