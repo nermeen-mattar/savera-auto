@@ -51,4 +51,10 @@ export const theme = {
         medium: '15px',
         large: '20px',
     },
+    breakpoints: {
+        mobile: '576px',
+        tablet: '768px',
+        laptop: '992px',
+        desktop: '1200px',
+    },
 };

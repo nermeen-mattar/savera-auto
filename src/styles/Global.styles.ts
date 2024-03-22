@@ -27,7 +27,7 @@ const GlobalStyles = createGlobalStyle`
     font-size: ${theme.typography.body.desktop};
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: ${theme.breakpoints.mobile}) {
     h1 {
       font-size: ${theme.typography.h1.mobile};
     }

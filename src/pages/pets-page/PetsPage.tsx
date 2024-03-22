@@ -20,7 +20,7 @@ const MainContainer = styled.main`
     max-width: 1200px;
     padding: 50px;
 
-    @media (max-width: 480px) {
+    @media (max-width: ${theme.breakpoints.mobile}) {
         padding: 0;
     }
 `;

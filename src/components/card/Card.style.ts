@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import ArrowRightIcon from '../../icons/arrow-right';
 import { DarkButton } from '../../styles/Button.styles';
 import { theme } from '../../theme';
 
@@ -8,7 +7,7 @@ export const CardWrapper = styled.article`
     flex-direction: column;
     border-radius: 10px;
 
-    @media (max-width: 480px) {
+    @media (max-width: ${theme.breakpoints.mobile}) {
         flex-direction: row;
         align-items: center;
     }
@@ -19,7 +18,7 @@ export const Avatar = styled.img`
     max-width: 100%;
     height: auto;
 
-    @media (max-width: 480px) {
+    @media (max-width: ${theme.breakpoints.mobile}) {
         max-width: 80px;
         max-height: 80px;
         margin-right: 20px;
@@ -29,7 +28,7 @@ export const Avatar = styled.img`
 export const Content = styled.div`
     align-self: start;
 
-    @media (max-width: 480px) {
+    @media (max-width: ${theme.breakpoints.mobile}) {
         align-self: auto;
     }
 `;
@@ -40,7 +39,7 @@ export const Name = styled.h4`
 
 export const Button = styled.button`
     ${DarkButton}
-    @media (max-width: 480px) {
+    @media (max-width: ${theme.breakpoints.mobile}) {
         display: none;
     }
 `;

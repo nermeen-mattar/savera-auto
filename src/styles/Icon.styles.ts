@@ -13,7 +13,7 @@ export const ArrowRightWrapper = styled.section`
     flex: 1;
     text-align: right;
 
-    @media (max-width: 480px) {
+    @media (max-width: ${theme.breakpoints.mobile}) {
         flex: 1;
         text-align: right;
     }
@@ -23,7 +23,7 @@ export const ArrowRight = styled(ArrowRightIcon)`
     display: none;
     fill: ${theme.colors.white};
     stroke: ${theme.colors.white};
-    @media (max-width: 480px) {
+    @media (max-width: ${theme.breakpoints.mobile}) {
         display: block;
         background: ${theme.colors.secondary};
         border-radius: 50%;

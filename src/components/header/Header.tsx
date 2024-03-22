@@ -11,7 +11,7 @@ const StyledHeader = styled.header`
     padding: ${theme.spacing.small} ${theme.spacing.large};
     align-items: center;
 
-    @media (max-width: 480px) {
+    @media (max-width: ${theme.breakpoints.mobile}) {
         background-color: transparent;
         padding: 10px;
     }
