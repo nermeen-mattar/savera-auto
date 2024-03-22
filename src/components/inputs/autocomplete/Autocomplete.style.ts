@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import IconSearch from '../../icons/Search';
-import { theme } from '../../theme';
+import IconSearch from '../../../icons/Search';
+import { theme } from '../../../theme';
 
 export const SearchContainer = styled.div<{ suggestions: string[] }>`
     position: relative;
@@ -13,7 +13,7 @@ export const SearchContainer = styled.div<{ suggestions: string[] }>`
     border-radius: ${theme.borderRadius.large};
 `;
 
-export const SearchInputWrapper = styled.section`
+export const AutocompleteWrapper = styled.section`
     display: flex;
     align-items: center;
     position: relative;

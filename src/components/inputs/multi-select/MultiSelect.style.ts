@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { OptionsList } from '../../styles/list.styles';
-import { theme } from '../../theme';
+import { OptionsList } from '../../../styles/list.styles';
+import { theme } from '../../../theme';
 
 export const SelectedOptions = styled.button<{ open: boolean }>`
     padding: ${theme.spacing.xsmall} ${theme.spacing.medium};

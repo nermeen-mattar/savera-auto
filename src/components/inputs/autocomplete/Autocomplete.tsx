@@ -1,13 +1,13 @@
 import React, { useCallback, useState } from 'react';
-import { OptionItem, OptionsList } from '../../styles/list.styles';
-import { simpleFuzzySearch } from '../../utils/fuzzy-search';
+import { OptionItem, OptionsList } from '../../../styles/list.styles';
+import { simpleFuzzySearch } from '../../../utils/fuzzy-search';
 import {
     Input,
     SearchContainer,
-    SearchInputWrapper,
+    AutocompleteWrapper,
     StyledSearchIcon,
     SuggestionsContainer,
-} from './SearchInput.style';
+} from './Autocomplete.style';
 
 interface Props {
     onValueChange: (value: string) => void;
@@ -15,7 +15,7 @@ interface Props {
     placeholderLabel: string;
 }
 
-function SearchInput({ onValueChange, searchItems, placeholderLabel }: Props) {
+function Autocomplete({ onValueChange, searchItems, placeholderLabel }: Props) {
     const [value, setValue] = useState('');
     const [suggestions, setSuggestions] = useState<string[]>([]);
 
@@ -49,7 +49,7 @@ function SearchInput({ onValueChange, searchItems, placeholderLabel }: Props) {
 
     return (
         <SearchContainer suggestions={suggestions}>
-            <SearchInputWrapper>
+            <AutocompleteWrapper>
                 <Input
                     suggestions={suggestions}
                     type="text"
@@ -58,7 +58,7 @@ function SearchInput({ onValueChange, searchItems, placeholderLabel }: Props) {
                     onChange={handleInputChange}
                 />
                 <StyledSearchIcon />
-            </SearchInputWrapper>
+            </AutocompleteWrapper>
             {suggestions.length > 0 && (
                 <SuggestionsContainer>
                     <OptionsList>
@@ -79,4 +79,4 @@ function SearchInput({ onValueChange, searchItems, placeholderLabel }: Props) {
     );
 }
 
-export default SearchInput;
+export default Autocomplete;

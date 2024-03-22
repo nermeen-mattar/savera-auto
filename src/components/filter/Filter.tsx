@@ -6,9 +6,9 @@ import { useAppSelector } from '../../state/hooks';
 import { RootState } from '../../state/store';
 import { theme } from '../../theme';
 import { Pet } from '../../types/pet';
-import { Dropdown } from '../dropdown';
-import MultiSelect from '../multi-select/MultiSelect';
-import SearchInput from '../search-input/SearchInput';
+import MultiSelect from '../inputs/multi-select/MultiSelect';
+import Autocomplete from '../inputs/autocomplete/Autocomplete';
+import { Dropdown } from '../inputs/dropdown/Dropdown';
 
 interface FilterProps {
     items: Pet[];
@@ -64,7 +64,7 @@ const Filter: React.FC<FilterProps> = ({ items, onFilter }) => {
     return (
         <FilterContainer>
             <InputContainer>
-                <SearchInput
+                <Autocomplete
                     placeholderLabel={t('search-pets')}
                     searchItems={itemNames}
                     onValueChange={handleSearchChange}
