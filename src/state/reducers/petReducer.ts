@@ -1,5 +1,5 @@
-import { AgeRange } from '../../types/ageRange';
 import { Pet } from '../../types/pet';
+import { Range } from '../../types/range';
 import {
     FETCH_PETS_FAILURE,
     FETCH_PETS_MAX_MIN_AGES,
@@ -13,7 +13,7 @@ interface PetsState {
     pets: Pet[];
     types: string[];
     error: string | null;
-    maxMinAge: AgeRange;
+    maxMinAge: Range;
 }
 
 const initialState: PetsState = {
@@ -29,7 +29,7 @@ const initialState: PetsState = {
 
 interface Action {
     type: string;
-    payload?: Pet[] | string | string[] | AgeRange;
+    payload?: Pet[] | string | string[] | Range;
 }
 
 const petReducer = (
@@ -63,7 +63,7 @@ const petReducer = (
         case FETCH_PETS_MAX_MIN_AGES:
             return {
                 ...state,
-                maxMinAge: action.payload as AgeRange,
+                maxMinAge: action.payload as Range,
             };
         default:
             return state;

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { AgeRange } from '../types/ageRange';
+import { Range } from '../types/range';
 import { Pet } from '../types/pet';
 
 export interface Filters {
@@ -7,7 +7,7 @@ export interface Filters {
     selectedTypes: string[];
     sortByLatestAdded: boolean;
     isAvailableNow: boolean;
-    ageRange: AgeRange;
+    ageRange: Range;
 }
 
 const usePetsFilter = (initialPets: Pet[]) => {

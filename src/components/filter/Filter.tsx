@@ -5,13 +5,13 @@ import { Filters } from '../../hooks/usePetsFilter';
 import { useAppSelector } from '../../state/hooks';
 import { RootState } from '../../state/store';
 import { theme } from '../../theme';
-import { AgeRange } from '../../types/ageRange';
 import { Pet } from '../../types/pet';
 import Autocomplete from '../inputs/autocomplete/Autocomplete';
 import Dropdown from '../inputs/dropdown/Dropdown';
 import MultiSelect from '../inputs/multi-select/MultiSelect';
 import Slider from '../inputs/slider/Slider';
 import ToggleButton from '../inputs/toggle-button/ToggleButton';
+import { Range } from '../../types/range';
 
 interface FilterProps {
     items: Pet[];
@@ -76,7 +76,7 @@ const Filter: React.FC<FilterProps> = ({ items, onFilter }) => {
         }));
     }, []);
 
-    const handleAgeRangeChange = useCallback((ageRange: AgeRange) => {
+    const handleAgeRangeChange = useCallback((ageRange: Range) => {
         setFilters((prevFilters) => ({
             ...prevFilters,
             ageRange,
