@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import { Card, CardIconWrapper, StyledIcon } from './IconCard.style';
 
 interface Props {
@@ -17,4 +17,5 @@ function IconCard({ label, icon }: Props) {
     );
 }
 
-export default IconCard;
+const MemoizedIconCard = React.memo(IconCard);
+export default MemoizedIconCard;

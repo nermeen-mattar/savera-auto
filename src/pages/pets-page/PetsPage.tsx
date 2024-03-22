@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
@@ -6,6 +6,7 @@ import CategoriesList from '../../components/categories-list/CategoriesList';
 import DirectorySection from '../../components/directory-section/DirectorySection';
 import Filter from '../../components/filter/Filter';
 import PetsList from '../../components/pets-list/PetsList';
+import usePetsFilter from '../../hooks/usePetsFilter';
 import treats from '../../images/treats.jpeg';
 import { fetchPets } from '../../state/actions/petActions';
 import { useAppDispatch } from '../../state/hooks';
@@ -53,17 +54,7 @@ function PetsPage() {
     const loading = useSelector((state: RootState) => state.pet.loading);
     const error = useSelector((state: RootState) => state.pet.error);
 
-    const [filteredPets, setFilteredPets] = useState<Pet[]>([]);
-
-    useEffect(() => {
-        if (allPets.length > 0) {
-            setFilteredPets(allPets);
-        }
-    }, [allPets]);
-
-    const handleFilterChange = (filteredPets: Pet[]) => {
-        setFilteredPets(filteredPets);
-    };
+    const { filteredPets, setFilters } = usePetsFilter(allPets);
 
     return (
         <MainContainer>
@@ -76,10 +67,7 @@ function PetsPage() {
                     {error && <ErrorMessage>{error}</ErrorMessage>}
                     {!loading && !error && (
                         <>
-                            <Filter
-                                items={allPets}
-                                onFilterChange={handleFilterChange}
-                            />
+                            <Filter items={allPets} onFilter={setFilters} />
                             <PetsList pets={filteredPets} />
                         </>
                     )}

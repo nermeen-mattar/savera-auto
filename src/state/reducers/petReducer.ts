@@ -15,7 +15,7 @@ interface PetsState {
 
 const initialState: PetsState = {
     pets: [],
-    types: [], 
+    types: [],
     loading: false,
     error: null,
 };

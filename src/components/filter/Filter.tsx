@@ -1,17 +1,18 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
+import { Filters } from '../../hooks/usePetsFilter';
+import { useAppSelector } from '../../state/hooks';
+import { RootState } from '../../state/store';
 import { theme } from '../../theme';
 import { Pet } from '../../types/pet';
 import { Dropdown } from '../dropdown';
 import MultiSelect from '../multi-select/MultiSelect';
 import SearchInput from '../search-input/SearchInput';
-import { useAppSelector } from '../../state/hooks';
-import { RootState } from '../../state/store';
 
 interface FilterProps {
     items: Pet[];
-    onFilterChange: (filteredPets: Pet[]) => void;
+    onFilter: (filters: Filters) => void;
 }
 
 const FilterContainer = styled.section`
@@ -29,7 +30,7 @@ const SelectContainer = styled.section`
     margin-top: ${theme.spacing.medium};
 `;
 
-const Filter: React.FC<FilterProps> = ({ items, onFilterChange }) => {
+const Filter: React.FC<FilterProps> = ({ items, onFilter }) => {
     const { t } = useTranslation();
     const petTypes = useAppSelector((state: RootState) => state.pet.types);
 
@@ -56,24 +57,9 @@ const Filter: React.FC<FilterProps> = ({ items, onFilterChange }) => {
         }));
     }, []);
 
-    const applyFilters = useCallback(() => {
-        const filteredPets = items.filter(
-            (pet) =>
-                (filters.searchQuery === '' ||
-                    pet.name
-                        .toLowerCase()
-                        .includes(filters.searchQuery.toLowerCase())) &&
-                (filters.selectedTypes.length === 0 ||
-                    filters.selectedTypes.includes(pet.species)) &&
-                (filters.selectedCategory === '' ||
-                    pet.species === filters.selectedCategory),
-        );
-        onFilterChange(filteredPets);
-    }, [filters, items, onFilterChange]);
-
     useEffect(() => {
-        applyFilters();
-    }, [filters]);
+        onFilter(filters);
+    }, [filters, onFilter]);
 
     return (
         <FilterContainer>
