@@ -36,8 +36,8 @@ export const Content = styled.div`
     }
 `;
 
-export const Name = styled.h4`
-    font-weight: 500;
+export const Name = styled.p`
+    font-weight: bold;
     margin: ${theme.spacing.small} 0;
 `;
 

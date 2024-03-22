@@ -13,6 +13,7 @@ const GlobalStyles = createGlobalStyle`
 
   h2 {
     font-size: ${theme.typography.h2.desktop};
+    margin-top: 0;
   }
 
   h3 {

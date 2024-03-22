@@ -45,7 +45,7 @@ function CategoriesList() {
 
     return (
         <StyledContainerSection>
-            <h2>{t('category.categories')}</h2>
+            <h3>{t('category.categories')}</h3>
             <StyledCategoriesList>
                 {CATEGORIES.map((category) => (
                     <IconCard
