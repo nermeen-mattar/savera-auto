@@ -1,5 +1,5 @@
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import './App.css';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Footer from './components/footer/Footer';
 import Header from './components/header/Header';
 import PetsPage from './pages/pets-page/PetsPage';

@@ -35,6 +35,10 @@ export const theme = {
             desktop: '16px',
             mobile: '16px',
         },
+        bodySmall: {
+            desktop: '14px',
+            mobile: '14px',
+        },
     },
     spacing: {
         xsmall: '7px',

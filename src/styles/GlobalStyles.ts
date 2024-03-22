@@ -3,8 +3,8 @@ import { theme } from '../theme';
 
 const GlobalStyles = createGlobalStyle`
   body {
-    margin: 0;
     font-family: ${theme.typography.fontFamily}, sans-serif;
+    color: ${theme.colors.black};
   }
 
   h1 {

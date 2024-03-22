@@ -24,6 +24,7 @@ const InputContainer = styled.section`
 const SelectContainer = styled.section`
     display: flex;
     gap: ${theme.spacing.small};
+    margin-top: ${theme.spacing.medium};
 `;
 
 const Filter: React.FC<FilterProps> = ({ items, onFilterChange }) => {
