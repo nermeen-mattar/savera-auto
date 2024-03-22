@@ -5,6 +5,8 @@ export interface Filters {
     searchQuery: string;
     selectedTypes: string[];
     selectedCategory: string;
+    sortByLatestAdded: boolean;
+    isAvailableNow: boolean;
 }
 
 const usePetsFilter = (initialPets: Pet[]) => {
@@ -12,12 +14,14 @@ const usePetsFilter = (initialPets: Pet[]) => {
         searchQuery: '',
         selectedTypes: [],
         selectedCategory: '',
+        sortByLatestAdded: false,
+        isAvailableNow: false,
     });
 
     const [filteredPets, setFilteredPets] = useState<Pet[]>(initialPets);
 
     useEffect(() => {
-        const result = initialPets.filter(
+        let result = initialPets.filter(
             (pet) =>
                 (filters.searchQuery === '' ||
                     pet.name
@@ -26,8 +30,18 @@ const usePetsFilter = (initialPets: Pet[]) => {
                 (filters.selectedTypes.length === 0 ||
                     filters.selectedTypes.includes(pet.species)) &&
                 (filters.selectedCategory === '' ||
-                    pet.species === filters.selectedCategory),
+                    pet.species === filters.selectedCategory) &&
+                (!filters.isAvailableNow || pet.available),
         );
+
+        if (filters.sortByLatestAdded) {
+            result = result.sort(
+                (a, b) =>
+                    new Date(b.dateAdded).getTime() -
+                    new Date(a.dateAdded).getTime(),
+            );
+        }
+
         setFilteredPets(result);
     }, [filters, initialPets]);
 

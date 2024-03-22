@@ -2,14 +2,14 @@ import styled, { css } from 'styled-components';
 import { theme } from '../theme';
 
 const buttonStyles = css`
-    padding: 12px 36px;
+    padding: ${theme.spacing.small} ${theme.spacing.large};
     border-radius: ${theme.borderRadius.large};
     border: none;
     cursor: pointer;
     font-weight: bold;
     transition: background-color 0.3s ease;
     &:hover {
-        background-color: #f8cf47;
+        background-color: ${theme.colors.lightGrey};
         color: ${theme.colors.darkGrey};
     }
 `;
@@ -17,7 +17,6 @@ const buttonStyles = css`
 export const LightButton = styled.button`
     ${buttonStyles}
     background-color: white;
-    width: 100%;
 `;
 
 export const DarkButton = css`

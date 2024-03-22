@@ -15,10 +15,10 @@ export const CardWrapper = styled.article`
     }
 `;
 
-export const Avatar = styled.div<{ img: string }>`
+export const Avatar = styled.div<{ src: string }>`
     border-radius: ${theme.borderRadius.small};
     height: 100%;
-    background-image: url(${(props) => props.img});
+    background-image: url(${(props) => props.src});
     background-size: cover;
     background-position: center;
 

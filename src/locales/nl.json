@@ -2,24 +2,27 @@
     "pets": "Huisdieren",
     "pets-directory": "Huisdieren Gids",
     "search-pets": "Zoek naar huisdieren",
-    "type": "Type",
     "see-pets-for-adoption": "Bekijk alle huisdieren die beschikbaar zijn voor adoptie, promoot ze en geef ze een thuis",
     "results": "Resultaten",
     "loading": "Laden",
+    "filters": {
+        "type": "Type",
+        "latest-added": "Laatst toegevoegd"
+    },
     "language": {
         "english": "Engels",
         "dutch": "Nederlands",
-        "switch-to": "Overschakelen naar {{language}}"
+        "switch-to": "Wissel naar {{language}}"
     },
     "actions": {
-        "see-all": "Alles bekijken",
-        "view": "Bekijken"
+        "see-all": "Bekijk alles",
+        "view": "Bekijk"
     },
     "category": {
         "categories": "Categorieën",
         "all-pets": "Alle huisdieren",
-        "location-specific": "Locatiespecifiek",
-        "age-specific": "Leeftijdsspecifiek",
+        "location-specific": "Locatie-specifiek",
+        "age-specific": "Leeftijd-specifiek",
         "available-now": "Nu beschikbaar",
         "small-or-big-home": "Voor kleine of grote huizen"
     }

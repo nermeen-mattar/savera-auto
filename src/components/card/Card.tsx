@@ -17,9 +17,8 @@ const Card = ({ name, photoUrl, photoPlaceholder, actionLabel }: Props) => {
     return (
         <CardWrapper>
             <Avatar
-                crossOrigin="anonymous"
-                img={imageError ? photoPlaceholder : photoUrl}
-                alt={`Profile picture of ${name}`}
+                role="img"
+                src={imageError ? photoPlaceholder : photoUrl}
                 onError={handleImageError}
             />
             <Content>

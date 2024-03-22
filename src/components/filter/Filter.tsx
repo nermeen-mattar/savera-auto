@@ -9,6 +9,8 @@ import { Pet } from '../../types/pet';
 import Autocomplete from '../inputs/autocomplete/Autocomplete';
 import { Dropdown } from '../inputs/dropdown/Dropdown';
 import MultiSelect from '../inputs/multi-select/MultiSelect';
+import Slider from '../inputs/slider/Slider';
+import ToggleButton from '../inputs/toggle-button/ToggleButton';
 
 interface FilterProps {
     items: Pet[];
@@ -38,6 +40,8 @@ const Filter: React.FC<FilterProps> = ({ items, onFilter }) => {
         searchQuery: '',
         selectedTypes: [] as string[],
         selectedCategory: '',
+        sortByLatestAdded: false,
+        isAvailableNow: false,
     });
 
     const itemNames = items.map((item) => item.name);
@@ -57,6 +61,23 @@ const Filter: React.FC<FilterProps> = ({ items, onFilter }) => {
         }));
     }, []);
 
+    const handleLatestAddedToggle = useCallback(
+        (isSortByLatestAdded: boolean) => {
+            setFilters((prevFilters) => ({
+                ...prevFilters,
+                sortByLatestAdded: isSortByLatestAdded,
+            }));
+        },
+        [],
+    );
+
+    const handleAvailableNowToggle = useCallback((isAvailableNow: boolean) => {
+        setFilters((prevFilters) => ({
+            ...prevFilters,
+            isAvailableNow: isAvailableNow,
+        }));
+    }, []);
+
     useEffect(() => {
         onFilter(filters);
     }, [filters, onFilter]);
@@ -72,7 +93,7 @@ const Filter: React.FC<FilterProps> = ({ items, onFilter }) => {
             </InputContainer>
             <SelectContainer>
                 <MultiSelect
-                    placeholderLabel={t('type')}
+                    placeholderLabel={t('filters.type')}
                     onSelect={handleTypeChange}
                     options={petTypes}
                 />
@@ -82,6 +103,15 @@ const Filter: React.FC<FilterProps> = ({ items, onFilter }) => {
                     onChange={handleCategoryChange}
                     options={['All pets', 'Location Specific', 'Age Specific']}
                 />
+                <ToggleButton
+                    onToggle={handleLatestAddedToggle}
+                    placeholderLabel={t('filters.latest-added')}
+                />
+                <ToggleButton
+                    onToggle={handleAvailableNowToggle}
+                    placeholderLabel={t('category.available-now')}
+                />
+                {/* <Slider onChange={handleAvailableNowToggle} /> */}
             </SelectContainer>
         </FilterContainer>
     );
