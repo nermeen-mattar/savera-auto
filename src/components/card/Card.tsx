@@ -1,38 +1,35 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import petPlaceholder from '../../images/pet-placeholder.png';
-import { Pet } from '../../types/pet';
-import { DarkButton } from '../button-styles/ButtonStyles';
-import './card.css';
+import { useCallback, useState } from 'react';
+import { ArrowRight, ArrowRightWrapper } from '../../styles/Icon.styles';
+import { Avatar, Button, CardWrapper, Content, Name } from './Card.style';
 
 interface Props {
-    item: Pet;
+    name: string;
+    photoUrl: string;
+    photoPlaceholder: string;
+    actionLabel: string;
 }
 
-function Card({ item }: Props) {
-    const { t } = useTranslation();
+const Card = ({ name, photoUrl, photoPlaceholder, actionLabel }: Props) => {
+    const [imageError, setImageError] = useState(false);
 
-    const handleImageError = (
-        event: React.SyntheticEvent<HTMLImageElement, Event>,
-    ) => {
-        (event.target as HTMLImageElement).src = petPlaceholder;
-    };
+    const handleImageError = useCallback(() => setImageError(true), []);
 
     return (
-        <article className="card">
-            <img
-                className="card__image"
-                crossOrigin="anonymous"
-                src={item.photoUrl}
-                alt={item.name}
+        <CardWrapper>
+            <Avatar
+                role="img"
+                src={imageError ? photoPlaceholder : photoUrl}
                 onError={handleImageError}
             />
-            <section className="card__content">
-                <h4 className="card__name">{item.name}</h4>
-                <DarkButton className="card__button">{t('view')}</DarkButton>
-            </section>
-        </article>
+            <Content>
+                <Name>{name}</Name>
+                <Button aria-label={`Action for ${name}`}>{actionLabel}</Button>
+            </Content>
+            <ArrowRightWrapper>
+                <ArrowRight aria-label={`Action for ${name}`} />
+            </ArrowRightWrapper>
+        </CardWrapper>
     );
-}
+};
 
 export default Card;

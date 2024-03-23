@@ -1,74 +1,120 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import styled from 'styled-components';
+import { Filters } from '../../hooks/usePetsFilter';
+import { useAppSelector } from '../../state/hooks';
+import { RootState } from '../../state/store';
+import { theme } from '../../theme';
 import { Pet } from '../../types/pet';
-import { Dropdown } from '../dropdown';
-import SearchInput from '../search-input/SearchInput';
+import { Range } from '../../types/range';
+import Autocomplete from '../inputs/autocomplete/Autocomplete';
+import Dropdown from '../inputs/dropdown/Dropdown';
+import MultiSelect from '../inputs/multi-select/MultiSelect';
+import Slider from '../inputs/slider/Slider';
+import ToggleButton from '../inputs/toggle-button/ToggleButton';
 
 interface FilterProps {
     items: Pet[];
-    onFilterChange: (filteredPets: Pet[]) => void;
+    onFilter: (filters: Filters) => void;
 }
 
-const Filter: React.FC<FilterProps> = ({ items, onFilterChange }) => {
+const FilterContainer = styled.section`
+    display: flex;
+    flex-direction: column;
+`;
+
+const InputContainer = styled.section`
+    max-width: 500px;
+`;
+
+const SelectContainer = styled.section`
+    display: flex;
+    flex-wrap: wrap;
+    gap: ${theme.spacing.small};
+    margin-top: ${theme.spacing.medium};
+`;
+
+const Filter: React.FC<FilterProps> = ({ items, onFilter }) => {
+    const { t } = useTranslation();
+    const petTypes = useAppSelector((state: RootState) => state.pet.types);
+    const minMaxAges = useAppSelector(
+        (state: RootState) => state.pet.maxMinAge,
+    );
+
     const [filters, setFilters] = useState({
         searchQuery: '',
-        selectedType: '',
-        selectedCategory: '',
+        selectedTypes: [] as string[],
+        sortByLatestAdded: false,
+        isAvailableNow: false,
+        ageRange: { min: 0, max: 100 },
     });
 
-    const handleSearchChange = (query: string) => {
+    const itemNames = useMemo(() => items.map((item) => item.name), [items]);
+
+    const handleSearchChange = useCallback((query: string) => {
         setFilters((prevFilters) => ({ ...prevFilters, searchQuery: query }));
-        applyFilters({ ...filters, searchQuery: query });
-    };
+    }, []);
 
-    const handleTypeChange = (type: string) => {
-        setFilters((prevFilters) => ({ ...prevFilters, selectedType: type }));
-        applyFilters({ ...filters, selectedType: type });
-    };
+    const handleTypeChange = useCallback((types: string[]) => {
+        setFilters((prevFilters) => ({ ...prevFilters, selectedTypes: types }));
+    }, []);
 
-    const handleCategoryChange = (category: string) => {
+    const handleLatestAddedToggle = useCallback(
+        (sortByLatestAdded: boolean) => {
+            setFilters((prevFilters) => ({
+                ...prevFilters,
+                sortByLatestAdded,
+            }));
+        },
+        [],
+    );
+
+    const handleAvailableNowToggle = useCallback((isAvailableNow: boolean) => {
         setFilters((prevFilters) => ({
             ...prevFilters,
-            selectedCategory: category,
+            isAvailableNow,
         }));
-        applyFilters({ ...filters, selectedCategory: category });
-    };
+    }, []);
 
-    const applyFilters = (filters: {
-        searchQuery: string;
-        selectedType: string;
-        selectedCategory: string;
-    }) => {
-        const filteredPets = items.filter(
-            (pet) =>
-                (filters.searchQuery === '' ||
-                    pet.name
-                        .toLowerCase()
-                        .includes(filters.searchQuery.toLowerCase())) &&
-                (filters.selectedType === '' ||
-                    pet.species === filters.selectedType) &&
-                (filters.selectedCategory === '' ||
-                    pet.species === filters.selectedCategory),
-        );
-        onFilterChange(filteredPets);
-    };
+    const handleAgeRangeChange = useCallback((ageRange: Range) => {
+        setFilters((prevFilters) => ({
+            ...prevFilters,
+            ageRange,
+        }));
+    }, []);
+
+    useEffect(() => {
+        onFilter(filters);
+    }, [filters, onFilter]);
 
     return (
-        <div>
-            <SearchInput
-                value={filters.searchQuery}
-                onChange={handleSearchChange}
-            />
-            <Dropdown
-                value={filters.selectedType}
-                onChange={handleTypeChange}
-                options={['Dog', 'Cat']}
-            />
-            <Dropdown
-                value={filters.selectedCategory}
-                onChange={handleCategoryChange}
-                options={['All pets', 'Location Specific', 'Age Specific']}
-            />
-        </div>
+        <FilterContainer>
+            <InputContainer>
+                <Autocomplete
+                    placeholderLabel={t('search-pets')}
+                    searchItems={itemNames}
+                    onValueChange={handleSearchChange}
+                />
+            </InputContainer>
+            <SelectContainer>
+                <MultiSelect
+                    placeholderLabel={t('filters.type')}
+                    onSelect={handleTypeChange}
+                    options={petTypes}
+                />
+                <ToggleButton
+                    onToggle={handleLatestAddedToggle}
+                    placeholderLabel={t('filters.latest-added')}
+                />
+                <ToggleButton
+                    onToggle={handleAvailableNowToggle}
+                    placeholderLabel={t('category.available-now')}
+                />
+                <Dropdown placeholderLabel={t('filters.age-range')}>
+                    <Slider {...minMaxAges} onChange={handleAgeRangeChange} />
+                </Dropdown>
+            </SelectContainer>
+        </FilterContainer>
     );
 };
 

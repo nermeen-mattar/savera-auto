@@ -15,10 +15,46 @@ export const theme = {
     typography: {
         fontFamily: 'Open Sans',
         fontSize: '16px',
+        h1: {
+            desktop: '33px',
+            mobile: '26px',
+        },
+        h2: {
+            desktop: '28px',
+            mobile: '23px',
+        },
+        h3: {
+            desktop: '23px',
+            mobile: '20px',
+        },
+        h4: {
+            desktop: '18px',
+            mobile: '18px',
+        },
+        body: {
+            desktop: '16px',
+            mobile: '16px',
+        },
+        bodySmall: {
+            desktop: '14px',
+            mobile: '14px',
+        },
     },
     spacing: {
-        small: '8px',
-        medium: '16px',
-        large: '24px',
+        xsmall: '7px',
+        small: '10px',
+        medium: '20px',
+        large: '30px',
+    },
+    borderRadius: {
+        small: '10px',
+        medium: '15px',
+        large: '20px',
+    },
+    breakpoints: {
+        mobile: '576px',
+        tablet: '768px',
+        laptop: '992px',
+        desktop: '1200px',
     },
 };
