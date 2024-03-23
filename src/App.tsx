@@ -5,7 +5,7 @@ import AppRoutes from './routes/routes';
 
 function App() {
     return (
-        <Router>
+        <Router basename='/pets-web'>
             <Header />
             <AppRoutes />
             <Footer />
