@@ -7,9 +7,16 @@ interface Props {
     photoUrl: string;
     photoPlaceholder: string;
     actionLabel: string;
+    handleOnClick: () => void;
 }
 
-const Card = ({ name, photoUrl, photoPlaceholder, actionLabel }: Props) => {
+const Card = ({
+    name,
+    photoUrl,
+    photoPlaceholder,
+    actionLabel,
+    handleOnClick,
+}: Props) => {
     const [imageError, setImageError] = useState(false);
 
     const handleImageError = useCallback(() => setImageError(true), []);
@@ -23,7 +30,12 @@ const Card = ({ name, photoUrl, photoPlaceholder, actionLabel }: Props) => {
             />
             <Content>
                 <Name>{name}</Name>
-                <Button aria-label={`Action for ${name}`}>{actionLabel}</Button>
+                <Button
+                    onClick={handleOnClick}
+                    aria-label={`Action for ${name}`}
+                >
+                    {actionLabel}
+                </Button>
             </Content>
             <ArrowRightWrapper>
                 <ArrowRight aria-label={`Action for ${name}`} />
