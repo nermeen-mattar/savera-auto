@@ -96,7 +96,7 @@ Error generating stack: `+o.message+`
 `,rd=j.button`
     background-color: transparent;
     border: none;
-    color: ${O.colors.darkGrey};
+    color: ${O.colors.black};
     font-size: ${O.typography.fontSize};
     margin-left: 10px;
     cursor: pointer;
