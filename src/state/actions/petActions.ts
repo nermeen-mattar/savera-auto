@@ -1,4 +1,4 @@
-import { fetchPetsData } from '../../services/petsService';
+import { fetchPetsList } from '../../services/petsService';
 import { Pet } from '../../types/pet';
 import {
     calculateAge,
@@ -42,20 +42,20 @@ export const fetchPets = () => {
     return async (dispatch: AppDispatch) => {
         dispatch(fetchPetsRequest());
         try {
-            const pets = await fetchPetsData();
+            const pets = await fetchPetsList();
             // Perform all necessary data transformations here
-            const petsWithFormattedDatesAndAges = pets.map((pet) => ({
+            const formattedPets = pets.map((pet) => ({
                 ...pet,
                 dateAdded: fixDateFormat(pet.dateAdded),
                 age: calculateAge(pet.birthYear),
             }));
-            const uniquePetTypes = getUniquePetTypes(
-                petsWithFormattedDatesAndAges,
-            );
-            const maxMinAges = getMaxMinAges(petsWithFormattedDatesAndAges);
 
-            // Now dispatch actions with the fully prepared data
-            dispatch(fetchPetsSuccess(petsWithFormattedDatesAndAges));
+            // Now dispatch action with the fully prepared data
+            dispatch(fetchPetsSuccess(formattedPets));
+
+            const uniquePetTypes = getUniquePetTypes(formattedPets);
+            const maxMinAges = getMaxMinAges(formattedPets);
+
             dispatch(fetchPetTypes(uniquePetTypes));
             dispatch(fetchPetsMaxAndMinAge(maxMinAges));
         } catch (error) {

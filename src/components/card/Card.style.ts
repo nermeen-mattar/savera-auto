@@ -18,6 +18,7 @@ export const CardWrapper = styled.article`
 export const Avatar = styled.section<{ src: string }>`
     border-radius: ${theme.borderRadius.small};
     height: 100%;
+    background-color: ${theme.colors.lightGrey}; /* Fallback background color */
     background-image: url(${(props) => props.src});
     background-size: cover;
     background-position: center;
@@ -43,6 +44,7 @@ export const Name = styled.p`
 
 export const Button = styled.button`
     ${DarkButton}
+    font-weight: bold;
     @media (max-width: ${theme.breakpoints.mobile}) {
         display: none;
     }

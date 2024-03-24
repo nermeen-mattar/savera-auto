@@ -6,7 +6,6 @@ const buttonStyles = css`
     border-radius: ${theme.borderRadius.large};
     border: none;
     cursor: pointer;
-    font-weight: bold;
     transition: background-color 0.3s ease;
     &:hover {
         background-color: ${theme.colors.lightGrey};
@@ -28,7 +27,7 @@ export const DarkButton = css`
 export const TextButton = styled.button`
     background-color: transparent;
     border: none;
-    color: ${theme.colors.white};
+    color: ${theme.colors.black};
     font-size: ${theme.typography.fontSize};
     margin-left: 10px;
     cursor: pointer;

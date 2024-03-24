@@ -12,34 +12,17 @@ import { fetchPets } from '../../state/actions/petActions';
 import { useAppDispatch } from '../../state/hooks';
 import { RootState } from '../../state/store';
 import { StyledContainerSection } from '../../styles/Container.styles';
-import { theme } from '../../theme';
+import { ErrorMessage } from '../../styles/Error';
+import { LoadingIndicator } from '../../styles/LoadingIndicator';
+import { PageContainer } from '../../styles/PageContainer';
 import { Pet } from '../../types/pet';
-
-const MainContainer = styled.main`
-    margin: 0 auto;
-    max-width: 1200px;
-    padding: 50px;
-
-    @media (max-width: ${theme.breakpoints.mobile}) {
-        padding: 0;
-    }
-`;
 
 const ContentSection = styled.section`
     display: flex;
     flex-direction: column;
     gap: 40px;
-`;
-
-const LoadingIndicator = styled.section`
-    font-size: 24px;
-    text-align: center;
-`;
-
-const ErrorMessage = styled.section`
-    font-size: 24px;
-    color: ${theme.colors.red};
-    text-align: center;
+    width: 100%;
+    max-width: 1200px;
 `;
 
 function PetsPage() {
@@ -50,20 +33,18 @@ function PetsPage() {
         dispatch(fetchPets());
     }, [dispatch]);
 
-    const allPets: Pet[] = useSelector((state: RootState) => state.pet.pets);
-    const loading = useSelector((state: RootState) => state.pet.loading);
-    const error = useSelector((state: RootState) => state.pet.error);
+    const allPets: Pet[] = useSelector((state: RootState) => state.pets.pets);
+    const loading = useSelector((state: RootState) => state.pets.loading);
+    const error = useSelector((state: RootState) => state.pets.error);
 
     const { filteredPets, setFilters } = usePetsFilter(allPets);
 
     return (
-        <MainContainer>
+        <PageContainer>
             <ContentSection>
                 <StyledContainerSection>
                     <h2>{t('pets')}</h2>
-                    {loading && (
-                        <LoadingIndicator>{t('loading')}</LoadingIndicator>
-                    )}
+                    {loading && <LoadingIndicator />}
                     {error && <ErrorMessage>{error}</ErrorMessage>}
                     {!loading && !error && (
                         <>
@@ -83,7 +64,7 @@ function PetsPage() {
                 />
                 <CategoriesList />
             </ContentSection>
-        </MainContainer>
+        </PageContainer>
     );
 }
 

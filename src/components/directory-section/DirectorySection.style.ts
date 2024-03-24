@@ -46,6 +46,7 @@ export const ContentWrapper = styled.section`
 `;
 
 export const Button = styled(LightButton)`
+    font-weight: bold;
     @media (max-width: ${theme.breakpoints.mobile}) {
         display: none;
     }

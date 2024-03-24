@@ -2,6 +2,10 @@ import { createGlobalStyle } from 'styled-components';
 import { theme } from '../theme';
 
 const GlobalStyles = createGlobalStyle`
+  html, body, #root {
+    height:100%;
+  }
+
   body {
     font-family: ${theme.typography.fontFamily}, sans-serif;
     color: ${theme.colors.black};

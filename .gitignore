@@ -10,6 +10,7 @@ lerna-debug.log*
 designs
 
 node_modules
+build
 dist
 dist-ssr
 *.local

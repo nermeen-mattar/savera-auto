@@ -27,7 +27,7 @@ function Header() {
 
     return (
         <StyledHeader>
-            <Link to="pets">
+            <Link to="pets" aria-label="Redirect to pets fitler">
                 <IconPet />
             </Link>
 

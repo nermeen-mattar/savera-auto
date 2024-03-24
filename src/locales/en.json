@@ -5,6 +5,8 @@
     "see-pets-for-adoption": "See all pets available for adoption, promote them and get them a Home",
     "results": "Results",
     "loading": "Loading",
+    "yes": "Yes",
+    "no": "No",
     "filters": {
         "type": "Type",
         "latest-added": "Latest added",
@@ -23,11 +25,17 @@
         "view": "View"
     },
     "category": {
-        "categories": "Categories",
+        "category": "category",
         "all-pets": "All pets",
         "location-specific": "Location specific",
         "age-specific": "Age specific",
         "available-now": "Available now",
         "small-or-big-home": "For small or big homes"
+    },
+    "profile": {
+        "date-added": "Date added",
+        "type": "Type",
+        "age": "age",
+        "years": "Years"
     }
 }
