@@ -47,16 +47,20 @@ function Autocomplete({ onValueChange, searchItems, placeholderLabel }: Props) {
         [onValueChange],
     );
 
+    const handleOptionKeyDown = useCallback(
+        (event: React.KeyboardEvent<HTMLLIElement>, suggestion: string) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                handleSuggestionSelection(suggestion);
+            }
+        },
+        [handleSuggestionSelection],
+    );
+
     return (
-        <SearchContainer
-            suggestions={suggestions}
-            aria-label="Search container"
-        >
+        <SearchContainer suggestions={suggestions}>
             <AutocompleteWrapper
                 role="combobox"
                 aria-expanded={suggestions.length > 0}
-                aria-haspopup="listbox"
-                aria-owns="suggestionsList"
             >
                 <Input
                     suggestions={suggestions}
@@ -75,14 +79,17 @@ function Autocomplete({ onValueChange, searchItems, placeholderLabel }: Props) {
             {suggestions.length > 0 && (
                 <SuggestionsContainer id="suggestionsList" role="listbox">
                     <OptionsList>
-                        {suggestions.map((suggestion, index) => (
+                        {suggestions.map((suggestion) => (
                             <OptionItem
+                                tabIndex={0}
                                 key={suggestion}
-                                id={`suggestion-${index}`}
                                 role="option"
                                 aria-selected={value === suggestion}
                                 onClick={() =>
                                     handleSuggestionSelection(suggestion)
+                                }
+                                onKeyDown={(event) =>
+                                    handleOptionKeyDown(event, suggestion)
                                 }
                             >
                                 {suggestion}

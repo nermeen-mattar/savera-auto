@@ -45,6 +45,7 @@ export const theme = {
         small: '10px',
         medium: '20px',
         large: '30px',
+        xlarge: '50px',
     },
     borderRadius: {
         small: '10px',

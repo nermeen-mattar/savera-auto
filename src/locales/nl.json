@@ -5,9 +5,15 @@
     "see-pets-for-adoption": "Bekijk alle huisdieren die beschikbaar zijn voor adoptie, promoot ze en geef ze een thuis",
     "results": "Resultaten",
     "loading": "Laden",
+    "yes": "Ja",
+    "no": "Nee",
     "filters": {
         "type": "Type",
-        "latest-added": "Laatst toegevoegd"
+        "latest-added": "Laatst toegevoegd",
+        "selected-range": "Geselecteerd Bereik",
+        "age-range": "Leeftijdsbereik",
+        "min": "Min",
+        "max": "Max"
     },
     "language": {
         "english": "Engels",
@@ -19,11 +25,17 @@
         "view": "Bekijk"
     },
     "category": {
-        "categories": "Categorieën",
+        "category": "Categorie",
         "all-pets": "Alle huisdieren",
         "location-specific": "Locatie-specifiek",
         "age-specific": "Leeftijd-specifiek",
         "available-now": "Nu beschikbaar",
         "small-or-big-home": "Voor kleine of grote huizen"
+    },
+    "profile": {
+        "date-added": "Datum toegevoegd",
+        "type": "Type",
+        "age": "Leeftijd",
+        "years": "Jaar"
     }
 }

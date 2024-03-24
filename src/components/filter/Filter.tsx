@@ -36,9 +36,9 @@ const SelectContainer = styled.section`
 
 const Filter: React.FC<FilterProps> = ({ items, onFilter }) => {
     const { t } = useTranslation();
-    const petTypes = useAppSelector((state: RootState) => state.pet.types);
+    const petTypes = useAppSelector((state: RootState) => state.pets.types);
     const minMaxAges = useAppSelector(
-        (state: RootState) => state.pet.maxMinAge,
+        (state: RootState) => state.pets.maxMinAge,
     );
 
     const [filters, setFilters] = useState({
