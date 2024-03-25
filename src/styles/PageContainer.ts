@@ -7,8 +7,7 @@ export const PageContainer = styled.article`
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin: 0 auto;
-    padding: ${theme.spacing.xlarge};
+    padding: ${theme.spacing.large} ${theme.spacing.xlarge};
 
     @media (max-width: ${theme.breakpoints.mobile}) {
         padding: 0;

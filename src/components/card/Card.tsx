@@ -4,7 +4,7 @@ import { Avatar, Button, CardWrapper, Content, Name } from './Card.style';
 
 interface Props {
     name: string;
-    photoUrl: string;
+    photoUrl?: string;
     photoPlaceholder: string;
     actionLabel: string;
     handleOnClick: () => void;
@@ -25,7 +25,7 @@ const Card = ({
         <CardWrapper>
             <Avatar
                 role="img"
-                src={imageError ? photoPlaceholder : photoUrl}
+                src={photoUrl && !imageError ? photoUrl : photoPlaceholder}
                 onError={handleImageError}
             />
             <Content>
@@ -38,7 +38,10 @@ const Card = ({
                 </Button>
             </Content>
             <ArrowRightWrapper>
-                <ArrowRight aria-label={`Action for ${name}`} />
+                <ArrowRight
+                    aria-label={`Action for ${name}`}
+                    onClick={handleOnClick}
+                />
             </ArrowRightWrapper>
         </CardWrapper>
     );

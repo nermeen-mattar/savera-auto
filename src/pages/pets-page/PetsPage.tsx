@@ -46,7 +46,7 @@ function PetsPage() {
                     <h2>{t('pets')}</h2>
                     {loading && <LoadingIndicator />}
                     {error && <ErrorMessage>{error}</ErrorMessage>}
-                    {!loading && !error && (
+                    {filteredPets.length > 0 ? (
                         <>
                             <Filter
                                 items={filteredPets}
@@ -54,7 +54,7 @@ function PetsPage() {
                             />
                             <PetsList pets={filteredPets} />
                         </>
-                    )}
+                    ) : null}
                 </StyledContainerSection>
                 <DirectorySection
                     title={t('pets-directory')}

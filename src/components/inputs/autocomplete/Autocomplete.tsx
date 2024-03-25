@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { OptionItem, OptionsList } from '../../../styles/list.styles';
-import { simpleFuzzySearch } from '../../../utils/fuzzy-search';
+import { fuzzySearch } from '../../../utils/fuzzy-search';
 import {
     AutocompleteWrapper,
     Input,
@@ -29,10 +29,7 @@ function Autocomplete({ onValueChange, searchItems, placeholderLabel }: Props) {
                 return;
             }
 
-            const filteredSuggestions = simpleFuzzySearch(
-                newValue,
-                searchItems,
-            );
+            const filteredSuggestions = fuzzySearch(newValue, searchItems);
             setSuggestions(filteredSuggestions);
         },
         [searchItems, onValueChange],

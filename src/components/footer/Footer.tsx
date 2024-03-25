@@ -3,7 +3,7 @@ import { theme } from '../../theme';
 
 const StyledFooter = styled.footer`
     background-color: ${theme.colors.secondary};
-    height: 80px;
+    min-height: 80px;
 `;
 
 function Footer() {

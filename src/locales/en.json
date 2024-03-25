@@ -25,7 +25,7 @@
         "view": "View"
     },
     "category": {
-        "category": "category",
+        "categories": "Categories",
         "all-pets": "All pets",
         "location-specific": "Location specific",
         "age-specific": "Age specific",
