@@ -51,9 +51,17 @@ const Filter: React.FC<FilterProps> = ({ items, onFilter }) => {
 
     const itemNames = useMemo(() => items.map((item) => item.name), [items]);
 
-    const handleSearchChange = useCallback((query: string) => {
-        setFilters((prevFilters) => ({ ...prevFilters, searchQuery: query }));
-    }, []);
+    const handleSearchChange = useCallback(
+        (searchQuery: string) => {
+            setFilters((prevFilters) => {
+                if (prevFilters.searchQuery !== searchQuery) {
+                    return { ...prevFilters, searchQuery };
+                }
+                return prevFilters;
+            });
+        },
+        [setFilters],
+    );
 
     const handleTypeChange = useCallback((types: string[]) => {
         setFilters((prevFilters) => ({ ...prevFilters, selectedTypes: types }));

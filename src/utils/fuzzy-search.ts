@@ -1,5 +1,19 @@
 import Fuse from 'fuse.js';
 
+export function fuzzySearch(input: string, items: string[], threshold = 0.8) {
+    input = input.toLowerCase();
+    return items.filter((item) => {
+        const itemLowerCase = item.toLowerCase();
+        let i = 0;
+        for (let j = 0; j < itemLowerCase.length; j++) {
+            if (itemLowerCase[j] === input[i]) {
+                i++;
+            }
+        }
+        return i / input.length > threshold;
+    });
+}
+
 export const simpleFuzzySearch = (input: string, items: string[]): string[] => {
     const words = input.trim().toLowerCase().split(' ');
     return items.filter((item) => {
