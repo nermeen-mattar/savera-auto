@@ -423,8 +423,6 @@ Error generating stack: `+o.message+`
         display: none;
     }
 `,Q2=({name:e,photoUrl:t,photoPlaceholder:n,actionLabel:r,handleOnClick:i})=>{const[o,s]=R.useState(!1),l=R.useCallback(()=>s(!0),[]);return S.jsxs(B2,{children:[S.jsx(H2,{role:"img",src:o?n:t,onError:l}),S.jsxs(V2,{children:[S.jsx(W2,{children:e}),S.jsx(K2,{onClick:i,"aria-label":`Action for ${e}`,children:r})]}),S.jsx(p2,{children:S.jsx(Cm,{"aria-label":`Action for ${e}`})})]})},G2=b.section`
-    max-height: 330px;
-    overflow: auto;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
     gap: ${P.spacing.large};
