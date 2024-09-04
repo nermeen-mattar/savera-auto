@@ -3,7 +3,7 @@
     "private": true,
     "version": "0.0.0",
     "type": "module",
-    "homepage": "https://nermeen-mattar.github.io/pets-web/",
+    "homepage": "http://savera-auto.nl/",
     "scripts": {
         "dev": "vite",
         "build": "vite build",
