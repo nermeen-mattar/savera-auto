@@ -1,6 +1,6 @@
 # Pets web app
 
-An amazing cars web app which you can access through [https://nermeen-mattar.github.io/pets-web/](https://savera-auto.nl/)
+An amazing cars web app which you can access through [our website](https://savera-auto.nl/)
 
 An app that displays different types of `cars on a filter page`.
 
