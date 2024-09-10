@@ -1,5 +1,7 @@
+import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import useLazyLoad from '../../hooks/useLazyLoad';
 import petPlaceholder from '../../images/pet-placeholder.png';
 import { Pet } from '../../types/pet';
 import Card from '../card/Card';
@@ -12,10 +14,13 @@ interface Props {
 function PetsList({ pets }: Props) {
     const { t } = useTranslation();
     const navigate = useNavigate();
-
-    const handlePetCardClick = (petId: number) => {
-        navigate(`/pets/${petId}`);
-    };
+    const { observer, intersectingIds } = useLazyLoad();
+    const handlePetCardClick = useCallback(
+        (petId: number) => {
+            navigate(`/pets/${petId}`);
+        },
+        [navigate],
+    );
 
     return (
         <section aria-labelledby="petsListHeading">
@@ -30,14 +35,24 @@ function PetsList({ pets }: Props) {
                     <section
                         key={item.id}
                         data-testid="pet-card"
+                        data-id={item.id}
                         aria-label={`${item.name} details`}
+                        ref={(el) => {
+                            if (el && observer.current) {
+                                observer.current.observe(el);
+                            }
+                        }}
                     >
                         <Card
-                            photoUrl={item.photoUrl}
+                            photoUrl={
+                                intersectingIds.includes(item.id)
+                                    ? item.photoUrl
+                                    : undefined
+                            }
                             name={item.name}
                             photoPlaceholder={petPlaceholder}
                             actionLabel={t('actions.view')}
-                            handleOnClick={() => handlePetCardClick(item.id)} // Pass handlePetCardClick function
+                            handleOnClick={() => handlePetCardClick(item.id)}
                         />
                     </section>
                 ))}
